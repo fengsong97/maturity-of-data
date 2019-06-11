@@ -1,8 +1,11 @@
 <view class="index">
-  <view class="index-hd">
+  <view style="padding:20rpx;text-align:center;">
     <image class="index-logo" src="../resources/kind/logo.png"></image>
     <view class="index-desc">工具说明:</view>
   </view>
+
+
+
 
     <view class="index-bd">
     <view class="kind-list">
@@ -19,24 +22,14 @@
            <view id="" class="kind-list-item-hd " bindtap="kindToggle">
             <view class="kind-list-text">3: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
           </view>
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">4: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>          
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">5: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>          
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">6: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>          
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">7: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>           
-          <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">8: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>
+
         </view>
     </view>
   </view>
 
-
+    <view class="btn-area" id="buttonContainer">
+      <view class="button-sp-area">
+        <button type="primary" plain="true">开始评估</button>
+      </view>
+    </view>
 </view>
