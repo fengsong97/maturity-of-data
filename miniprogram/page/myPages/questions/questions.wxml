@@ -1,0 +1,43 @@
+<view class="index" style="height: 100%;" >
+
+<swiper  style="height: 70%;" indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{lists}}" wx:key="*this" wx:for-item="list">
+    
+     <swiper-item>
+            <view class="swiper-item ">   
+             <view style="box-sizing:border-box;padding:0 80rpx;">
+              <view style="margin:0 auto;text-align:center;"> 
+                <text>第{{list.id}}题</text> 
+              </view> 
+             
+              <text>{{list.text}}</text>
+            </view>
+
+
+              <view class="page-section page-section-gap">
+                <view class="page-section-title"></view>
+                <radio-group class="group" bindchange="radioChange">
+                  <block wx:for="{{list.answers}}" wx:key="*this" wx:for-item="answer">
+                      <view style="margin:30rpx 0;" >
+                        <radio id="{{list.id}}{{answer.id}}" value="{{list.id}}{{answer.id}}" ></radio>
+                        <label class="label-2-text" for="{{list.id}}{{answer.id}}"><text>{{answer.text}}</text></label>
+                      </view>
+                   </block>
+          <!--          <view style="margin:30rpx 0;">
+                    <radio id="b{{list}}" value="1" ></radio>
+                    <label class="label-2-text" for="b{{list}}"><text>B: bbbbb</text></label>
+                  </view> -->
+                </radio-group>
+              </view>
+          </view>
+     </swiper-item>
+  </block>
+ </swiper>
+
+    <view class="btn-area" id="buttonContainer">
+      <view class="button-sp-area">
+        <button type="primary" plain="true" bindtap="start">下一题</button>
+      </view>
+    </view>
+</view>

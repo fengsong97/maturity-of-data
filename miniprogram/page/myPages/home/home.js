@@ -70,4 +70,10 @@ Page({
     })
     wx.reportAnalytics('click_view_programmatically', {})
   }
+  ,
+  start(e) {
+    wx.navigateTo({
+    url: '../questions/questions'
+    })
+  }
 })
