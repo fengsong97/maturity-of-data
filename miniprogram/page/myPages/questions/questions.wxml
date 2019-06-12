@@ -1,13 +1,18 @@
 <view class="index" style="height: 100%;" >
 
-<swiper  style="height: 70%;" indicator-dots="{{indicatorDots}}"
-        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+<swiper  style="height: 70%;" 
+        indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" 
+        interval="{{interval}}" 
+        duration="{{duration}}" 
+        current="{{currentIndex}}" 
+        bindchange="swiperChange">
   <block wx:for="{{lists}}" wx:key="*this" wx:for-item="list">
     
      <swiper-item>
             <view class="swiper-item ">   
              <view style="box-sizing:border-box;padding:0 80rpx;">
-              <view style="margin:0 auto;text-align:center;"> 
+              <view style="margin:10px auto;text-align:center;"> 
                 <text>第{{list.id}}题</text> 
               </view> 
              
@@ -37,7 +42,12 @@
 
     <view class="btn-area" id="buttonContainer">
       <view class="button-sp-area">
-        <button type="primary" plain="true" bindtap="start">下一题</button>
+        <button type="primary" plain="true" bindtap="setIndex" size="mini" id='button0' disabled="{{currentIndex==0}}">上一题</button>
+        <button type="primary" plain="true" bindtap="setIndex" size="mini" style="float: right;" id='button1' disabled="{{currentIndex==(lists.length-1)}}">下一题</button>
       </view>
-    </view>
+    </view>   
+
+      <view >
+        <button type="primary" plain="true" bindtap="submit" size="default" style="width: 70%;margin-left: 15%;margin-top: 0;">提交评估</button>
+      </view>
 </view>

@@ -108,6 +108,7 @@
     "page/API/pages/doc-web-view/doc-web-view",
     "page/cloud/pages/doc-web-view/doc-web-view",
     "page/myPages/home/home",
+    "page/myPages/result/result",
     "page/myPages/questions/questions"
 
   ],

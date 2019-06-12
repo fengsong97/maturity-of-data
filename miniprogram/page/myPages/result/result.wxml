@@ -1,0 +1,17 @@
+<view class="index" style="text-align: center;">
+  <text>
+
+得分 100分
+
+建议
+1 ..........
+2 ..........
+3 ..........
+
+
+</text>
+
+</view>
+<view >
+  <button type="primary" plain="true" bindtap="tohome" size="default" style="width: 50%;margin-left: 25%;margin-top: 0;" >返回首页</button>
+</view>
