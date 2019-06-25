@@ -3,6 +3,9 @@
     <image class="index-logo" src="resources/kind/logo.png"></image>
     <view class="index-desc">以下将展示小程序官方组件能力，组件样式仅供参考，开发者可根据自身需求自定义组件样式，具体属性参数详见 <navigator url="pages/doc-web-view/doc-web-view" class="weui-agree__link">小程序开发文档</navigator>。</view>
   </view>
+  <view >
+  <button type="primary" plain="true" bindtap="tohome" size="default" style="width: 50%;margin-left: 25%;margin-top: 0;" >返回</button>
+</view>
   <view class="index-bd">
     <view class="kind-list">
       <block wx:for-items="{{list}}" wx:key="{{item.id}}">

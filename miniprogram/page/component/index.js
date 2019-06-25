@@ -69,5 +69,10 @@ Page({
       list
     })
     wx.reportAnalytics('click_view_programmatically', {})
+  }, 
+    tohome() {
+          wx.switchTab({
+            url: '/page/API/index'
+          })
   }
 })

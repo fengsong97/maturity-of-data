@@ -254,4 +254,10 @@ Page({
       isSetTabBarPage: false
     })
   },
+    tocomponents() {
+              wx.redirectTo({
+              url: '../component/index'
+              })
+  }
+
 })

@@ -16,7 +16,7 @@ Page({
   login() {
     const that = this
     wx.login({
-      success() {
+      success(data) {
         app.globalData.hasLogin = true
         that.setData({
           hasLogin: true
