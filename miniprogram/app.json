@@ -108,9 +108,13 @@
     "page/component/pages/doc-web-view/doc-web-view",
     "page/API/pages/doc-web-view/doc-web-view",
     "page/cloud/pages/doc-web-view/doc-web-view",
+
     "page/myPages/result/result",
     "page/myPages/questions/questions",
-    "page/myPages/user/user"
+    "page/myPages/user/user",
+
+
+    "page/component/pages/editor/editor"
 
   ],
   "window": {
