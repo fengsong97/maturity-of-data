@@ -1,3 +1,4 @@
+var startRequest = require("../startRequest.js")
 Page({
   onShow() {
     wx.reportAnalytics('enter_home_programmatically', {})
@@ -9,20 +10,36 @@ Page({
     }
   },
   onLoad: function() {
-    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-    wx.getSetting({
-      success(res) {
-        if (!res.authSetting['scope.userInfo']) {
-          wx.authorize({
-            scope: 'scope.userInfo',
-            success () {
-              // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-              // wx.startRecord()
+    var that = this;
+
+    wx.login({
+      success(data){
+        wx.getSetting({
+          success(res) {
+            if (!res.authSetting['scope.userInfo']) {
+              wx.authorize({
+                scope: 'scope.userInfo',
+                success (userInfo) {
+                  that.getUserInfo(userInfo);
+                }
+              })
+            }else{
+              // 必须是在用户已经授权的情况下调用
+                wx.getUserInfo({
+                  success: function(res) {
+                    that.getUserInfo(res);
+                    
+                  }
+                })
             }
-          })
-        }
+          }
+    })
+      },fail(data){
+        console.log(data)
       }
     })
+    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
+
   },
   data: {
     list: [
@@ -68,6 +85,25 @@ Page({
         pages: ['ad', 'open-data', 'web-view']
       }
     ]
+  },
+  getUserInfo(data){
+    //encryptedData
+    //signature
+    console.log(data)
+    var userInfo = data.userInfo
+    var nickName = userInfo.nickName
+    var avatarUrl = userInfo.avatarUrl
+    var gender = userInfo.gender //性别 0：未知、1：男、2：女
+    var province = userInfo.province
+    var city = userInfo.city
+    var country = userInfo.country
+
+    startRequest.postData("",{},function success(data) {
+      console.log(data)
+    },function fail(data) {
+      console.log(data)
+      // body...
+    })
   },
 
   kindToggle(e) {
