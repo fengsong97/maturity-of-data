@@ -1,3 +1,4 @@
+var startRequest = require("../startRequest.js")
 Page({
   onShareAppMessage() {
     return {
@@ -5,14 +6,17 @@ Page({
       path: 'page/component/pages/swiper/swiper'
     }
   },
-
+onLoad: function() {
+  this.getQuestions();
+},
   data: {
-    lists: [
-    {id:'01',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    {id:'02',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    {id:'03',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    {id:'04',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    ],
+    lists: []
+    // {id:'01',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
+    // {id:'02',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
+    // {id:'03',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
+    // {id:'04',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
+    // ]
+    ,
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -20,6 +24,20 @@ Page({
     duration: 500,
     currentIndex: 0,
     disable: false
+  },
+  getQuestions(){
+    var that =this;
+    startRequest.postData("a/gen/questions/listData.json",{},
+      function success(data) {
+      console.log(data);
+      
+      that.setData({
+        lists:data.list
+      })
+    },function fail(data) {
+      console.log(data)
+      // body...
+    })
   },
 
   changeIndicatorDots() {

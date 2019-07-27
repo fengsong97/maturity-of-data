@@ -16,17 +16,17 @@
                 <text>第{{list.id}}题</text> 
               </view> 
              
-              <text>{{list.text}}</text>
+              <text>{{list.title}}</text>
             </view>
 
 
               <view class="page-section page-section-gap">
                 <view class="page-section-title"></view>
                 <radio-group class="group" bindchange="radioChange">
-                  <block wx:for="{{list.answers}}" wx:key="*this" wx:for-item="answer">
+                  <block wx:for="{{list.answersList}}" wx:key="*this" wx:for-item="answer">
                       <view style="margin:30rpx 0;" >
                         <radio id="{{list.id}}{{answer.id}}" value="{{list.id}}{{answer.id}}" ></radio>
-                        <label class="label-2-text" for="{{list.id}}{{answer.id}}"><text>{{answer.text}}</text></label>
+                        <label class="label-2-text" for="{{list.id}}{{answer.id}}"><text>{{answer.testSelect}}: {{answer.testInput}}</text></label>
                       </view>
                    </block>
           <!--          <view style="margin:30rpx 0;">

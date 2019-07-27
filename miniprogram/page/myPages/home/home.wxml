@@ -11,16 +11,8 @@
     <view class="kind-list">
         <view class="kind-list-item">
 
-          <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">1: aaaaaaaa阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒大风车</view>
-          </view>
-
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">2: bbbbbbb阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
-          </view>
-
-           <view id="" class="kind-list-item-hd " bindtap="kindToggle">
-            <view class="kind-list-text">3: ccccccc阿斯顿发达第三方士大夫撒地方撒旦法撒旦法sad士大夫撒</view>
+          <view id="" class="kind-list-item-hd " style="white-space:pre;">
+            <view class="kind-list-text">{{homeDes}}</view>
           </view>
 
         </view>
