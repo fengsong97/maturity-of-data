@@ -3,7 +3,7 @@ Page({
   onShareAppMessage() {
     return {
       title: 'swiper',
-      path: 'page/component/pages/swiper/swiper'
+      path: 'pages/component/pages/swiper/swiper'
     }
   },
 onLoad: function() {
@@ -90,7 +90,7 @@ onLoad: function() {
         if (res.confirm) {
           console.log('用户点击确定')
           wx.switchTab({
-            url: '/page/myPages/result/result'
+            url: '/pages/myPages/result/result'
           })
         } else if (res.cancel) {
           console.log('用户点击取消')

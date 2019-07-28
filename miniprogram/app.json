@@ -1,9 +1,9 @@
 {
   "pages": [
-    "page/index/index",
-    "page/myPages/result/result",
-    "page/myPages/questions/questions",
-    "page/myPages/user/user"
+    "pages/index/index",
+    "pages/myPages/result/result",
+    "pages/myPages/questions/questions",
+    "pages/myPages/user/user"
   ],
   "window": {
     "navigationBarTextStyle": "black",
@@ -18,20 +18,20 @@
     "backgroundColor": "#ffffff",
     "list": [
         {
-          "pagePath": "page/index/index",
+          "pagePath": "pages/index/index",
           "iconPath": "image/icon_component.png",
           "selectedIconPath": "image/icon_component_HL.png",
           "text": "说明首页"
         },
         {
-          "pagePath": "page/myPages/result/result",
+          "pagePath": "pages/myPages/result/result",
           "iconPath": "image/icon_API.png",
           "selectedIconPath": "image/icon_API_HL.png",
           "text": "评估结果"
         },
 
       {
-        "pagePath": "page/myPages/user/user",
+        "pagePath": "pages/myPages/user/user",
         "iconPath": "image/icon_cloud.png",
         "selectedIconPath": "image/icon_cloud_HL.png",
         "text": "用户"
