@@ -10,13 +10,8 @@ onLoad: function() {
   this.getQuestions();
 },
   data: {
-    lists: []
-    // {id:'01',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    // {id:'02',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    // {id:'03',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    // {id:'04',text:" '2011年1月，微信1.0发布''同年5月，微信2.0语音对讲发布''10月，微信3.0新增摇一摇功能'???",answers:[{id:"01",text:"A: aaaa"},{id:"02",text:"B: bbbb"}]},
-    // ]
-    ,
+    lists: [],
+    answers:{},
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -82,10 +77,19 @@ onLoad: function() {
     })
     console.log(this.data.currentIndex)
   },
+  radioChange:function(e) {
+    console.log(e);
+    this.data.answers[e.currentTarget.id]=e.detail.value
+    // this.setData({
+    //   answers["2"]:'2'
+    // })
+    console.log(this.data);
+  },
   submit(e) {
+    var that=this;
     wx.showModal({
       title: '确认提交吗?',
-      content: '已答2题,共10题',
+      content: '已答'+Object.getOwnPropertyNames(that.data.answers).length+'题,共'+that.data.lists.length+'题',
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
