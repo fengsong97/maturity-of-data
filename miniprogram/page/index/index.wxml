@@ -1,0 +1,27 @@
+<view class="index">
+  <view style="padding:20rpx;text-align:center;">
+    <image class="index-logo" src="../myPages/resources/kind/logo.png"></image>
+    <view class="index-desc">工具说明:</view>
+  </view>
+
+
+
+
+    <view class="index-bd">
+    <view class="kind-list">
+        <view class="kind-list-item">
+
+          <view id="" class="kind-list-item-hd " style="white-space:pre;">
+            <view class="kind-list-text">{{homeDes}}</view>
+          </view>
+
+        </view>
+    </view>
+  </view>
+
+    <view class="btn-area" id="buttonContainer">
+      <view class="button-sp-area">
+        <button type="primary" plain="true" bindtap="start">开始评估</button>
+      </view>
+    </view>
+</view>

@@ -1,6 +1,6 @@
 {
   "pages": [
-    "page/myPages/home/home",
+    "page/index/index",
     "page/myPages/result/result",
     "page/myPages/questions/questions",
     "page/myPages/user/user"
@@ -18,7 +18,7 @@
     "backgroundColor": "#ffffff",
     "list": [
         {
-          "pagePath": "page/myPages/home/home",
+          "pagePath": "page/index/index",
           "iconPath": "image/icon_component.png",
           "selectedIconPath": "image/icon_component_HL.png",
           "text": "说明首页"

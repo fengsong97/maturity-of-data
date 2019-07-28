@@ -1,4 +1,4 @@
-var startRequest = require("../startRequest.js")
+var startRequest = require("../api/startRequest.js")
 Page({
   onShareAppMessage() {
     return {
