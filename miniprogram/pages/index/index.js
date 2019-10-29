@@ -5,8 +5,8 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '小程序官方组件展示',
-      path: 'page/component/index'
+      title: '数据成熟度小工具',
+      path: 'pages/index/index'
     }
   },
   onLoad: function() {
