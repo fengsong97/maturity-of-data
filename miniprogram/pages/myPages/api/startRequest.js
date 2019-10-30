@@ -49,24 +49,24 @@
       success (res) {
 
 
-   wx.request({
-     url: host + url +"&__sid="+res.data,
-     header: {
-       "content-type": "application/json;charset=UTF-8"
-     },
-     method: 'GET',
-     success: function (res) {
-       doSuccess(res.data);
-     },
-     fail: function () {
-       doFail();
-     },
-   })
+         wx.request({
+           url: host + url +"&__sid="+res.data,
+           header: {
+             "content-type": "application/json;charset=UTF-8"
+           },
+           method: 'GET',
+           success: function (res) {
+             doSuccess(res.data);
+           },
+           fail: function () {
+             doFail();
+           },
+         })
 
 
 
-         }
-    })
+               }
+  })
  }
  
  /**
