@@ -1,4 +1,9 @@
  var app = getApp();
+
+  function getStorage(keyname){
+
+
+  }
  //项目URL相同部分，减轻代码量，同时方便项目迁移
  //这里因为我是本地调试，所以host不规范，实际上应该是你备案的域名信息
  // var host = 'https://a.fuduo.wang/'; 
@@ -11,28 +16,41 @@
   * doFail：失败的回调函数
   */
  function postData(url, postData, doSuccess, doFail) {
-   wx.request({
-     //项目的真正接口，通过字符串拼接方式实现
-     url: host + url,
-     header: {
-       "content-type": "application/json;charset=UTF-8"
-     },
-     data: postData,
-     method: 'POST',
-     success: function (res) {
-       //参数值为res.data,直接将返回的数据传入
-       doSuccess(res.data);
-     },
-     fail: function () {
-       doFail();
-     },
-   })
+    wx.getStorage({
+      key: "sessionid",
+      success (res) {
+
+           wx.request({
+             //项目的真正接口，通过字符串拼接方式实现
+             url: host + url +"&__sid="+res.data,
+             header: {
+               "content-type": "application/json;charset=UTF-8"
+             },
+             data: postData,
+             method: 'POST',
+             success: function (res) {
+               //参数值为res.data,直接将返回的数据传入
+               doSuccess(res.data);
+             },
+             fail: function () {
+               doFail();
+             },
+           })
+
+      }
+    })
+
  }
  
  //GET请求，不需传参，直接URL调用，
  function getData(url, doSuccess, doFail) {
+    wx.getStorage({
+      key: "sessionid",
+      success (res) {
+
+
    wx.request({
-     url: host + url,
+     url: host + url +"&__sid="+res.data,
      header: {
        "content-type": "application/json;charset=UTF-8"
      },
@@ -44,6 +62,11 @@
        doFail();
      },
    })
+
+
+
+         }
+    })
  }
  
  /**

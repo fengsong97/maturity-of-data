@@ -1,4 +1,5 @@
 var startRequest = require("../api/startRequest.js")
+var a = require("../api/a.js")
 Page({
   onShareAppMessage() {
     return {
@@ -22,17 +23,15 @@ onLoad: function() {
   },
   getQuestions(){
     var that =this;
-    startRequest.postData("a/gen/questions/listData.json",{},
-      function success(data) {
-      console.log(data);
-      
-      that.setData({
-        lists:data.list
-      })
-    },function fail(data) {
-      console.log(data)
-      // body...
+    a.a_questions(
+      function success(data){
+        that.setData({
+          lists:data.list
+        })
+    },function fail(data){
+        // console.log(data);
     })
+
   },
 
   changeIndicatorDots() {

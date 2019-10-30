@@ -1,4 +1,5 @@
 var startRequest = require("../myPages/api/startRequest.js")
+var a = require("../myPages/api/a.js")
 Page({
   onShow() {
     wx.reportAnalytics('enter_home_programmatically', {})
@@ -14,6 +15,15 @@ Page({
 
 
     var that = this;
+
+      function success(data){
+        console.log(data);
+        that.getHomePage();
+    },function fail(data){
+        // console.log(data);
+    })
+
+
 
     wx.login({
       success(data){
@@ -47,6 +57,8 @@ Page({
   data: {
     homeDes:""
   },
+
+
   getUserInfo(data){
     //encryptedData
     //signature
@@ -63,16 +75,13 @@ Page({
   },
   getHomePage(){
     var that =this;
-    startRequest.postData("a/gen/article/listData.json",{},
-      function success(data) {
-      console.log(data);
-
-      that.setData({
+    a.a_homePage(
+      function success(data){
+        that.setData({
         homeDes:data.list[0].testTextarea
       })
-    },function fail(data) {
-      console.log(data)
-      // body...
+    },function fail(data){
+        // console.log(data);
     })
   },
   kindToggle(e) {
