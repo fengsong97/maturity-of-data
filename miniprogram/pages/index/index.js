@@ -19,32 +19,32 @@ Page({
 
 
 
-    wx.login({
-      success(data){
-        wx.getSetting({
-          success(res) {
-            if (!res.authSetting['scope.userInfo']) {
-              wx.authorize({
-                scope: 'scope.userInfo',
-                success (userInfo) {
-                  that.getUserInfo(userInfo);
-                }
-              })
-            }else{
-              // 必须是在用户已经授权的情况下调用
-                wx.getUserInfo({
-                  success: function(res) {
-                    that.getUserInfo(res);
+    // wx.login({
+    //   success(data){
+    //     wx.getSetting({
+    //       success(res) {
+    //         if (!res.authSetting['scope.userInfo']) {
+    //           wx.authorize({
+    //             scope: 'scope.userInfo',
+    //             success (userInfo) {
+    //               that.getUserInfo(userInfo);
+    //             }
+    //           })
+    //         }else{
+    //           // 必须是在用户已经授权的情况下调用
+    //             wx.getUserInfo({
+    //               success: function(res) {
+    //                 that.getUserInfo(res);
                     
-                  }
-                })
-            }
-          }
-    })
-      },fail(data){
-        console.log(data)
-      }
-    })
+    //               }
+    //             })
+    //         }
+    //       }
+    // })
+    //   },fail(data){
+    //     console.log(data)
+    //   }
+    // })
     // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
 
   },
@@ -104,5 +104,31 @@ Page({
     wx.navigateTo({
     url: '../myPages/questions/questions'
     })
+  },
+  getPhoneNumber: function (e) {
+    var that=this;
+  // 参数e是绑定的授权方法自动传入过来的, 主要是为了拿到vi和encryptedData值从后台换取用户联系方式
+        if ("getPhoneNumber:ok" != e.detail.errMsg){
+          wx.showToast({
+            icon:'none',
+            title: '快捷登陆失败'
+          })
+          return;
+        }
+        var params = {}
+        params.iv = e.detail.iv;
+        params.encrypted = e.detail.encryptedData;
+        params.sessionkey =  wx.getStorageSync('sessionKey');
+
+        //调用后台接口获取用户手机号码
+       a.a_wx_getphone(
+          params,
+          function success(data){
+           // 获取到的手机号码
+            var phone = data.phone;
+          },
+          function fail(msg){
+         }
+    )
   }
 })
