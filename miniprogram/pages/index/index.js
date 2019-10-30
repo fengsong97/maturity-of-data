@@ -12,16 +12,10 @@ Page({
   },
   onLoad: function() {
 
-    
+
     var that = this;
 
-    a.a_login(
-      function success(data){
-        console.log(data);
-        that.getHomePage();
-    },function fail(data){
-        // console.log(data);
-    })
+
 
 
 
@@ -71,7 +65,13 @@ Page({
     var city = userInfo.city
     var country = userInfo.country
 
-
+    // a.a_sign_in(data.signature)(
+    //   function success(data){
+    //     console.log(data);
+    //     that.getHomePage();
+    // },function fail(data){
+    //     // console.log(data);
+    // })
   },
   getHomePage(){
     var that =this;
