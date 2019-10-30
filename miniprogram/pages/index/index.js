@@ -11,11 +11,11 @@ Page({
     }
   },
   onLoad: function() {
-    this.getHomePage();
 
-
+    
     var that = this;
 
+    a.a_login(
       function success(data){
         console.log(data);
         that.getHomePage();
