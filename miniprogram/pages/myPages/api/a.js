@@ -5,7 +5,7 @@ var startRequest = require("../api/startRequest.js")
 //后台登录接口
   function a_login(doSuccess, doFail){
     var that =this;
-    startRequest.getData("a/login?password=123456&username=user2&__login=true&__ajax=json",
+    startRequest.getData("a/login?password=123456&username=fengsong97&__login=true&__ajax=json",
       function success(data) {
       console.log(data);
       wx.setStorage({
@@ -19,7 +19,7 @@ var startRequest = require("../api/startRequest.js")
     })
 }
 
-
+//获取首页接口
   function a_homePage(doSuccess, doFail){
     var that =this;
     startRequest.getData("a/gen/ahome/listData.json?",
