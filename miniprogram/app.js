@@ -12,54 +12,6 @@ App({
   onHide() {
     console.log('App Hide')
   },
-  // globalData: {
-  //   hasLogin: false,
-  //   openid: null
-  // },
-  // lazy loading openid
-  getUserOpenId(callback) {
-    const self = this
-
-    if (self.globalData.openid) {
-      callback(null, self.globalData.openid)
-    } else {
-      wx.login({
-        success(data) {
-          wx.request({
-            url: config.openIdUrl,
-            data: {
-              code: data.code
-            },
-            success(res) {
-              console.log('拉取openid成功', res)
-              self.globalData.openid = res.data.openid
-              callback(null, self.globalData.openid)
-            },
-            fail(res) {
-              console.log('拉取用户openid失败，将无法正常使用开放接口等服务', res)
-              callback(res)
-            }
-          })
-        },
-        fail(err) {
-          console.log('wx.login 接口调用失败，将无法正常使用开放接口等服务', err)
-          callback(err)
-        }
-      })
-    }
-  },
-  // 通过云函数获取用户 openid，支持回调或 Promise
-  getUserOpenIdViaCloud() {
-    return wx.cloud.callFunction({
-      name: 'wxContext',
-      data: {}
-    }).then(res => {
-      this.globalData.openid = res.result.openid
-      return res.result.openid
-    })
-  },
-
-
   /**
      * 获取微信用户信息
      */
@@ -108,18 +60,17 @@ App({
      */
     wxLogin: function() {
         var that = this;
-        // 登录
+        // 微信登录
         wx.login({
             success: res => {
                 // 发送 res.code 到后台换取 openId, sessionKey, unionId
                 console.log(res);
                 a.a_wx(res.code,
                   function success(data){
-                   console.log(data);
-                   that.getWxUserInfo(data);
                    that.globalData.openId = data.openid;
                    that.globalData.sessionKey = data.session_key;
                    wx.setStorageSync('sessionKey',  data.session_key);
+                  that.getWxUserInfo(data);
                 },function fail(error){
                     console.log("location_error : " + error);
                     wx.showModal({
@@ -133,10 +84,14 @@ App({
     },
     getWxUserInfo: function(data) {
         var that = this;
-        a.a_sign_in(data.openid,
+        //后台注册,并登录
+        a.a_sign_in(that.globalData,
           function success(data){
-                   console.log(data);
                    that.globalData.memberInfo=data;
+                   // wx.showModal({
+                   //    title: "登录成功",
+                   //    content: data.message
+                   //  });
          },function fail(error){
                     console.log("location_error : " + error);
                     wx.showModal({
@@ -146,31 +101,6 @@ App({
                     
          }
         )
-
-    /**
-     * 根据openid请求后台查询，是否已绑定手机号码，即是否已注册系统账号
-     */
-        // wx.request({
-        //     url: that.globalData.baseUrl + '/v1/member',
-        //     method: 'GET',
-        //     data: {
-        //         openid: openid
-        //     },
-        //     header: {
-        //         'content-type': 'application/x-www-form-urlencoded',
-        //         'Accept': 'application/json'
-        //     },
-        //     success: function (data) {
-        // /**
-        //  * member表中存在该用户
-        //  */
-        //         if (data.statusCode === 200 && data.data.code == 200 && data.data.data.length === 1) {
-        //             that.globalData.memberInfo = data.data.data[0];
-        //         } else {
-        //             // 不存在该用户
-        //         }
-        //     }
-        // })
     },
     globalData: {
         openId: null,

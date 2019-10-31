@@ -1,5 +1,8 @@
 var startRequest = require("../myPages/api/startRequest.js")
 var a = require("../myPages/api/a.js")
+
+const app = getApp()
+
 Page({
   onShow() {
     wx.reportAnalytics('enter_home_programmatically', {})
@@ -11,42 +14,15 @@ Page({
     }
   },
   onLoad: function() {
-
-
     var that = this;
-
-
-
-
-
-    // wx.login({
-    //   success(data){
-    //     wx.getSetting({
-    //       success(res) {
-    //         if (!res.authSetting['scope.userInfo']) {
-    //           wx.authorize({
-    //             scope: 'scope.userInfo',
-    //             success (userInfo) {
-    //               that.getUserInfo(userInfo);
-    //             }
-    //           })
-    //         }else{
-    //           // 必须是在用户已经授权的情况下调用
-    //             wx.getUserInfo({
-    //               success: function(res) {
-    //                 that.getUserInfo(res);
-                    
-    //               }
-    //             })
-    //         }
-    //       }
-    // })
-    //   },fail(data){
-    //     console.log(data)
-    //   }
-    // })
-    // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-
+   var time= setInterval(function(){
+      console.log("等待1秒")
+      if(app.globalData.sessionKey){
+        that.getHomePage();
+        clearInterval(time);
+      }
+    }, 1000)
+    ;
   },
   data: {
     homeDes:""
@@ -65,13 +41,7 @@ Page({
     var city = userInfo.city
     var country = userInfo.country
 
-    // a.a_sign_in(data.signature)(
-    //   function success(data){
-    //     console.log(data);
-    //     that.getHomePage();
-    // },function fail(data){
-    //     // console.log(data);
-    // })
+    
   },
   getHomePage(){
     var that =this;

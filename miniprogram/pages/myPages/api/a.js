@@ -46,25 +46,30 @@ var startRequest = require("../api/startRequest.js")
 }
 
 //注册接口
-  function a_sign_in(openId,doSuccess, doFail){
+  function a_sign_in(data,doSuccess, doFail){
     var that =this;
+    var openId_code="wx_"+data.openId.substr(1,10);
     startRequest.postData("account/wxSign?"
-      +"userName="+openId
-      +"&loginCode="+openId
-      +"&userCode="+openId
+      +"userCode="+openId_code
+      +"&loginCode="+openId_code
+      +"&userName="+"wx@"+data.userInfo.nickName
+      +"&sex="+data.userInfo.gender
+      +"&avatar="+data.userInfo.avatarUrl
+      +"&sign="+""
+      +"&wxOpenid="+data.openId
       +"&userType=employee&op=add&isNewRecord=true&employee.office.officeCode=WX&employee.office.officeName=微信",
       {},
       function success(data) {
-        console.log(data);
+        console.log(data.message)
         if(data.result="true"){
-          a_login(openId,
+          a_login(openId_code,
             function success(data){
               doSuccess(data)
           },function fail(data){
 
           })
         }else {
-          a_login(openId,
+          a_login(openId_code,
             function success(data){
               doSuccess(data)
           },function fail(data){
