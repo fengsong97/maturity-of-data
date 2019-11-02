@@ -22,7 +22,8 @@
     <view class="btn-area" id="buttonContainer">
       <view class="button-sp-area">
         <button type="primary" plain="true" bindtap="start">开始评估</button>
-         <!-- <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">后几号</button> -->
+        <button open-type="getUserInfo">授权</button>
+         <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">后几号</button>
       </view>
     </view>
 </view>

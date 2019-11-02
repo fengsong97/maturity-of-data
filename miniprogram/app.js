@@ -36,20 +36,12 @@ App({
 
                         }
                     });
-                    
+
+
                 } 
                 // 如果为授权，每次进入小程序都要询问是否授权
                 else {
-                    // wx.authorize({
-                    //     scope: 'scope.record',
-                    //     success() {
-                    //         // 用户已经同意小程序使用录音功能，后续调用 wx.startRecord 接口不会弹窗询问
-                    //         that.getWxSetting();
-                    //     },
-                    //     fail(error) {
-                    //         console.log(error);
-                    //     }
-                    // })
+                  console.log("未授权用户信息")
                 }
             }
         })
@@ -74,7 +66,7 @@ App({
                 },function fail(error){
                     console.log("location_error : " + error);
                     wx.showModal({
-                      title: "登录fail",
+                      title: "业务登录失败",
                       content: error
                     });
                     
@@ -88,6 +80,8 @@ App({
         a.a_sign_in(that.globalData,
           function success(data){
                    that.globalData.memberInfo=data;
+                   wx.setStorageSync('jeesite_sessionid',  data.sessionid);
+                   that.globalData.jeesite_sessionid=data.sessionid;
                    // wx.showModal({
                    //    title: "登录成功",
                    //    content: data.message
@@ -105,6 +99,7 @@ App({
     globalData: {
         openId: null,
         sessionKey: null,
+        jeesite_sessionid: null,
         userInfo: null,
         memberInfo: null //,
         // baseUrl: "http://localhost"

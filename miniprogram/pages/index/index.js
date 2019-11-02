@@ -17,7 +17,7 @@ Page({
     var that = this;
    var time= setInterval(function(){
       console.log("等待1秒")
-      if(app.globalData.sessionKey){
+      if(app.globalData.jeesite_sessionid){
         that.getHomePage();
         clearInterval(time);
       }
@@ -49,7 +49,10 @@ Page({
       function success(data){
         that.setData({
         homeDes:data.list[0].testTextarea
-      })
+      });
+                    wx.switchTab({
+                      url: '/pages/index/index'
+                    });
     },function fail(data){
         // console.log(data);
     })
