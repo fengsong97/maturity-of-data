@@ -50,9 +50,7 @@ Page({
         that.setData({
         homeDes:data.list[0].testTextarea
       });
-                    wx.switchTab({
-                      url: '/pages/index/index'
-                    });
+
     },function fail(data){
         // console.log(data);
     })

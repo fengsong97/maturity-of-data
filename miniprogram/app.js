@@ -82,6 +82,10 @@ App({
                    that.globalData.memberInfo=data;
                    wx.setStorageSync('jeesite_sessionid',  data.sessionid);
                    that.globalData.jeesite_sessionid=data.sessionid;
+                   
+                    wx.switchTab({
+                      url: '/pages/index/index'
+                    });
                    // wx.showModal({
                    //    title: "登录成功",
                    //    content: data.message
