@@ -4,6 +4,7 @@ var a = require("pages/myPages/api/a.js")
 App({
   onLaunch(opts) {
     console.log('App Launch', opts)
+    wx.getSystemInfoSync();
     this.getWxSetting();
   },
   onShow(opts) {
@@ -101,6 +102,7 @@ App({
         )
     },
     globalData: {
+        systemInfo: wx.getSystemInfoSync(),
         openId: null,
         sessionKey: null,
         jeesite_sessionid: null,

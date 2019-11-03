@@ -1,17 +1,6 @@
-<view class="index" style="text-align: center;">
-  <text>
-
-得分 100分
-
-建议
-1 ..........
-2 ..........
-3 ..........
-
-
-</text>
-
+<!--index.wxml-->
+<view  >
+	<view style="height: {{windowHeight}}px;width: {{windowWidth}}px">
+  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
 </view>
-<!-- <view >
-  <button type="primary" plain="true" bindtap="tohome" size="default" style="width: 50%;margin-left: 25%;margin-top: 0;" >返回首页</button>
-</view> -->
+</view>
