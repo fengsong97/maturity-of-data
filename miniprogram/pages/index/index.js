@@ -15,14 +15,14 @@ Page({
   },
   onLoad: function() {
     var that = this;
-   var time= setInterval(function(){
-      console.log("等待1秒")
-      if(app.globalData.jeesite_sessionid){
+   // var time= setInterval(function(){
+      // console.log("等待1秒")
+      // if(app.globalData.jeesite_sessionid){
         that.getHomePage();
-        clearInterval(time);
-      }
-    }, 1000)
-    ;
+        // clearInterval(time);
+    //   }
+    // }, 1000)
+    // ;
   },
   data: {
     homeDes:""

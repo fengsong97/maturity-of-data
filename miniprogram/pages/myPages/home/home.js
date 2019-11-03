@@ -9,6 +9,20 @@ const pageObject = {
     plain: false,
     loading: false
   },
+    onLoad(opts) {
+     wx.getSetting({
+            success: res => {
+              if (res.authSetting['scope.userInfo']) {
+                 this.setData({
+              loading: true,
+              disabled: true
+
+              }) 
+
+    }}})
+
+   },
+  
 
   onShareAppMessage() {
     return {
@@ -42,6 +56,12 @@ const pageObject = {
       console.log(e)
       // var userInfo = wx.getStorageSync('userInfo');
       if(e.detail.errMsg ="getUserInfo:ok"){
+         this.setData({
+              loading: true,
+              disabled: true
+
+              }) ;
+         
         app.getWxSetting();
       }else {
         wx.showToast({

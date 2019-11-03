@@ -17,7 +17,8 @@
       <button type="warn" disabled="true">警告类操作 Disabled</button>
  -->
       <view class="button-sp-area">
-        <button type="primary" open-type="getUserInfo" bindgetuserinfo="getUserInfo" plain="true">微信登录</button>
+        <button type="primary" loading="{{loading}}" disabled="{{disabled}}"
+                open-type="getUserInfo" bindgetuserinfo="getUserInfo" >微信登录</button>
         <!-- <button type="primary" disabled="true" plain="true">不可点击的按钮</button> -->
 
 <!--         <button type="default" plain="true">按钮</button>
