@@ -12,7 +12,7 @@ onLoad: function() {
 },
   data: {
     lists: [],
-    answers:{},
+    answers:[],
     indicatorDots: true,
     vertical: false,
     autoplay: false,
@@ -86,9 +86,20 @@ onLoad: function() {
   },
   submit(e) {
     var that=this;
+    if(that.data.answers.length==0){
+      wx.showToast({
+        title: '请作答',
+        icon: 'success',
+        duration: 2000
+      })
+      return;
+    }
+
+    wx.setStorageSync('answers',  that.data.answers);
+    wx.setStorageSync('answers_title',  that.data.answers[0]?that.data.answers[0].testSelect:"默认");
     wx.showModal({
       title: '确认提交吗?',
-      content: '已答'+Object.getOwnPropertyNames(that.data.answers).length+'题,共'+that.data.lists.length+'题',
+      content: '已答'+that.data.answers.length+'题,共'+that.data.lists.length+'题',
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
