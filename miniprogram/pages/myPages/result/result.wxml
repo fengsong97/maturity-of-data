@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view  >
-	<view style="height: {{windowHeight}}px;width: {{windowWidth}}px">
-  <ec-canvas id="mychart-dom-graph" canvas-id="mychart-graph" ec="{{ ec }}"></ec-canvas>
+	<view style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
+  <ec-canvas id="mychartRadar" canvas-id="canvasMychartRadar" ec="{{ ec }}"></ec-canvas>
 </view>
 </view>
