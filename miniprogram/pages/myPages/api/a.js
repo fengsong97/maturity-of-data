@@ -1,4 +1,5 @@
 var startRequest = require("../api/startRequest.js")
+var jsonToUrl = require("../api/jsonToUrl.js")
 
 //sessionId保存
 
@@ -82,7 +83,7 @@ var startRequest = require("../api/startRequest.js")
       doFail(data)
     })
 }
-
+  //获取微信 openid
   function a_wx(code,doSuccess, doFail){
     var that =this;
     startRequest.getData("wx/getOpenIdByCode/"+code+"?",
@@ -94,12 +95,38 @@ var startRequest = require("../api/startRequest.js")
       doFail(data)
     })
 }
+
+//获取手机号 未完成
   function a_wx_getphone(parms,doSuccess, doFail){
     var that =this;
     startRequest.getData("wx/getPhone?"+"encrypted="+parms.encrypted+"&iv="+parms.iv+"&sessionkey="+parms.sessionkey,
       function success(data) {
       console.log(data);
       doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
+
+//答题接口 新增
+  function a_result_add(data,doSuccess, doFail){
+    startRequest.postData("a/gen/aresults/save?"+jsonToUrl.change(data),
+      {},
+      function success(data) {
+        // console.log(data)
+        doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
+//答题接口 列表
+  function a_result_list(data,doSuccess, doFail){
+    startRequest.getData("a/gen/aresults/listData.json?",
+      function success(data) {
+        // console.log(data)
+        doSuccess(data)
     },function fail(data) {
       // console.log(data)
       doFail(data)
@@ -115,3 +142,4 @@ var startRequest = require("../api/startRequest.js")
  module.exports.a_sign_in = a_sign_in;
  module.exports.a_homePage = a_homePage;
  module.exports.a_questions = a_questions;
+ module.exports.a_result_add = a_result_add;

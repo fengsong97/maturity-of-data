@@ -103,13 +103,47 @@ onLoad: function() {
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          wx.switchTab({
-            url: '/pages/myPages/result/result'
-          })
+          that.result_add()
+
+
+          // wx.switchTab({
+          //   url: '/pages/myPages/result/result'
+          // })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
+    })
+  },
+
+  result_add(){
+    var obj = {"id":"",
+              "testUser":{
+                  "userName":"wx@冯松",
+                  "userCode":"wx_wFNO5fBQhn_oau1"
+              },
+              "testSelect":"001",
+              "remarks":"asffasdfasdf",
+              "aresultDetailsList":[
+                      {"status":"0",
+                      "id":"",
+                      "testTextarea":"111",
+                      "testSelectMultiple":"11",
+                      "testSelect":"0"
+                      },{"status":"0",
+                      "id":"",
+                      "testTextarea":"222",
+                      "testSelectMultiple":"22",
+                      "testSelect":"0"
+                      }
+              ]
+  }
+
+    a.a_result_add(obj,
+      function success(data){
+        console.log("data")
+    },function fail(data){
+        // console.log(data);
     })
   }
 })
