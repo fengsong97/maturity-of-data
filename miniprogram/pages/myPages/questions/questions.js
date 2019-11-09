@@ -103,7 +103,7 @@ onLoad: function() {
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          that.result_add()
+          // that.result_add()
 
 
           // wx.switchTab({
@@ -117,6 +117,9 @@ onLoad: function() {
   },
 
   result_add(){
+    this.data.answers;
+    "0_1155000075046084608_数据战略规划_1155030816359333888_3"
+
     var obj = {"id":"",
               "testUser":{
                   "userName":"wx@冯松",
