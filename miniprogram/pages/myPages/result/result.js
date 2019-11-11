@@ -14,7 +14,8 @@ Page({
 	windowHeight:app.globalData.systemInfo.windowHeight,
    ec: {
       lazyLoad: true // 延迟加载
-    }
+    },
+  resultsList:[]
 
   },
   onShareAppMessage: function (res) {
@@ -29,12 +30,19 @@ Page({
   onReady() {
   },
   onShow(){
+    var that =this;
     console.log('radar show')
-    this.echartsComponnet = this.selectComponent('#mychartRadar');
+    //获取答题列表
+    // that.getResultsList(function a(data) {
+    //   that.data.resultsList=data.list;
+    // },function b(data) {
+    // });
+
+    that.echartsComponnet = that.selectComponent('#mychartRadar');
     if (!myChart){
-      this.init_echarts(); //初始化图表
+      that.init_echarts(); //初始化图表
     }else{
-      this.setMyOption(myChart); //更新数据
+      that.setMyOption(myChart); //更新数据
     }
   },
   //初始化图表
@@ -56,12 +64,7 @@ Page({
   },
 
   getOption: function () {
-    a.a_result_list({},
-      function success(data){
-        console.log("data")
-    },function fail(data){
-        // console.log(data);
-    })
+
 
     var answers_title =  wx.getStorageSync('answers_title');
     var answers =  wx.getStorageSync('answers');
@@ -119,5 +122,31 @@ Page({
   };
   console.log(option)
   return option;
+  },
+
+  getResultsList(doSuccess, doFail){
+    var params ={
+            testUser:{
+              userName:'wx%40冯松',
+              userCode:'wx_wFNO5fBQhn_oau1'
+            },
+            testSelect:"001",
+            createDate_gte:"",
+            createDate_lte:"",
+            status:"0",
+            pageNo:"",
+            pageSize:"",
+            orderBy:""
+    };
+
+
+    a.a_result_list(params,
+      function success(data){
+        console.log("data")
+        doSuccess(data)
+    },function fail(data){
+        // console.log(data);
+        doFail(data)
+    })
   }
 });
