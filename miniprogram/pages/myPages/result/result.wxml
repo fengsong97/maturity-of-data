@@ -1,6 +1,22 @@
 <!--index.wxml-->
 <view  >
-	<view style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
+	<view class="page">
+        <view class="weui-panel">
+          <block wx:for="{{[1, 2]}}" wx:key="" wx:for-index="idx" wx:for-item="" wx:if="{{idx <= 1}}">
+            <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
+            <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;">
+                <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
+                    <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">标题一</view>
+                    <view class="weui-media-box__desc">试题描述描述试题描述描述试题描述描述</view>
+                    <view class="weui-media-box__info" style="margin-top: 0px" >
+                        <view class="weui-media-box__info__meta" style="padding-top: 10px" >时间: 2019年11月11日14:40:51</view>
+                    </view>
+                </view>
+            </view>
+            </block>
+        </view>
+</view>
+<view style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
   <ec-canvas id="mychartRadar" canvas-id="canvasMychartRadar" ec="{{ ec }}"></ec-canvas>
 </view>
 </view>

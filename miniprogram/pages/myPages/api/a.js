@@ -122,8 +122,8 @@ var jsonToUrl = require("../api/jsonToUrl.js")
     })
 }
 //答题接口 列表
-  function a_result_list(data,doSuccess, doFail){
-    startRequest.getData("a/gen/aresults/listData.json?",
+  function a_result_list(params,doSuccess, doFail){
+    startRequest.getData("a/gen/aresults/listData.json?"+jsonToUrl.change(params),
       function success(data) {
         // console.log(data)
         doSuccess(data)

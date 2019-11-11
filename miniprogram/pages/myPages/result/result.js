@@ -1,5 +1,5 @@
 import * as echarts from '../ec-canvas/echarts';
-
+var a = require("../api/a.js")
 const app = getApp();
 // 0: "0_1155000075046084608_您所在的单位/业务领域是否制定了数据战略规划？_1155030816359333888_3"
 // 1: "1_1155000051230826496_数据战略规划_1155000051398598656_1"
@@ -34,7 +34,7 @@ Page({
     if (!myChart){
       this.init_echarts(); //初始化图表
     }else{
-      this.setOption(myChart); //更新数据
+      this.setMyOption(myChart); //更新数据
     }
   },
   //初始化图表
@@ -56,6 +56,13 @@ Page({
   },
 
   getOption: function () {
+    a.a_result_list({},
+      function success(data){
+        console.log("data")
+    },function fail(data){
+        // console.log(data);
+    })
+
     var answers_title =  wx.getStorageSync('answers_title');
     var answers =  wx.getStorageSync('answers');
 
