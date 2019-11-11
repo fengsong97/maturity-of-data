@@ -143,3 +143,4 @@ var jsonToUrl = require("../api/jsonToUrl.js")
  module.exports.a_homePage = a_homePage;
  module.exports.a_questions = a_questions;
  module.exports.a_result_add = a_result_add;
+ module.exports.a_result_list = a_result_list;

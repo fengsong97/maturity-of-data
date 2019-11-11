@@ -1,5 +1,7 @@
 var startRequest = require("../api/startRequest.js")
 var a = require("../api/a.js")
+
+const app = getApp();
 Page({
   onShareAppMessage() {
     return {
@@ -103,12 +105,12 @@ onLoad: function() {
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          // that.result_add()
+          that.result_add()
 
 
-          // wx.switchTab({
-          //   url: '/pages/myPages/result/result'
-          // })
+          wx.switchTab({
+            url: '/pages/myPages/result/result'
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -117,30 +119,50 @@ onLoad: function() {
   },
 
   result_add(){
-    this.data.answers;
-    "0_1155000075046084608_数据战略规划_1155030816359333888_3"
+    var obj ={id:"",
+          testUser:{
+            userCode: app.globalData.memberInfo.user.userCode,
+            userName: app.globalData.memberInfo.user.userName,
+          },
+          testSelect:"001",
+          remarks:"",
+          aresultDetailsList:[]
+        };
+    var answers = this.data.answers;
+    // "0_1155000075046084608_数据战略规划_1155030816359333888_3"
+    for (var i = 0; i < answers.length; i++) {
+      var aresultDetails ={
+        id:"",
+        status:"0",
+        testTextarea : answers[i].split("_")[2],
+        testSelectMultiple : answers[i].split("_")[4],
+        testSelect:"0"
+      }
+      obj.aresultDetailsList.push(aresultDetails)
+    }
 
-    var obj = {"id":"",
-              "testUser":{
-                  "userName":"wx@冯松",
-                  "userCode":"wx_wFNO5fBQhn_oau1"
-              },
-              "testSelect":"001",
-              "remarks":"asffasdfasdf",
-              "aresultDetailsList":[
-                      {"status":"0",
-                      "id":"",
-                      "testTextarea":"111",
-                      "testSelectMultiple":"11",
-                      "testSelect":"0"
-                      },{"status":"0",
-                      "id":"",
-                      "testTextarea":"222",
-                      "testSelectMultiple":"22",
-                      "testSelect":"0"
-                      }
-              ]
-  }
+
+  //   var obj = {"id":"",
+  //             "testUser":{
+  //                 "userName":"wx@冯松",
+  //                 "userCode":"wx_wFNO5fBQhn_oau1"
+  //             },
+  //             "testSelect":"001",
+  //             "remarks":"asffasdfasdf",
+  //             "aresultDetailsList":[
+  //                     {"status":"0",
+  //                     "id":"",
+  //                     "testTextarea":"111",
+  //                     "testSelectMultiple":"11",
+  //                     "testSelect":"0"
+  //                     },{"status":"0",
+  //                     "id":"",
+  //                     "testTextarea":"222",
+  //                     "testSelectMultiple":"22",
+  //                     "testSelect":"0"
+  //                     }
+  //             ]
+  // }
 
     a.a_result_add(obj,
       function success(data){
