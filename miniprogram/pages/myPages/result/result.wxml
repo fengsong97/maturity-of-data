@@ -2,14 +2,14 @@
 <view  >
 	<view class="page">
         <view class="weui-panel">
-          <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx <= 1}}">
+          <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx <= 2}}">
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
-            <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;">
+            <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" bindtap="getResultDetail" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
                     <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">{{result.testSelect}}</view>
                     <view class="weui-media-box__desc">{{result.remarks}}</view>
                     <view class="weui-media-box__info" style="margin-top: 0px" >
-                        <view class="weui-media-box__info__meta" style="padding-top: 10px" >创建时间: {{result.createDate}}</view>
+                        <view class="weui-media-box__info__meta"  >提交时间: {{result.createDate}}</view>
                     </view>
                 </view>
             </view>

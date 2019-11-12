@@ -133,6 +133,18 @@ var jsonToUrl = require("../api/jsonToUrl.js")
     })
 }
 
+//答题接口 detail
+  function a_result_detail(params,doSuccess, doFail){
+    startRequest.getData("a/gen/aresults/form.json?"+jsonToUrl.change(params),
+      function success(data) {
+        // console.log(data)
+        doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
+
 //后台退出接口
 
 
@@ -144,3 +156,4 @@ var jsonToUrl = require("../api/jsonToUrl.js")
  module.exports.a_questions = a_questions;
  module.exports.a_result_add = a_result_add;
  module.exports.a_result_list = a_result_list;
+ module.exports.a_result_detail = a_result_detail;

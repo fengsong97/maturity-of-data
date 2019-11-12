@@ -97,7 +97,7 @@ onLoad: function() {
       return;
     }
 
-    wx.setStorageSync('answers',  that.data.answers);
+    // wx.setStorageSync('answers',  that.data.answers);
     wx.setStorageSync('answers_title',  that.data.answers[0]?that.data.answers[0].testSelect:"默认");
     wx.showModal({
       title: '确认提交吗?',
@@ -108,9 +108,7 @@ onLoad: function() {
           that.result_add()
 
 
-          wx.switchTab({
-            url: '/pages/myPages/result/result'
-          })
+
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
@@ -166,7 +164,10 @@ onLoad: function() {
 
     a.a_result_add(obj,
       function success(data){
-        console.log("data")
+          app.globalData.reloadResults=true;
+          wx.switchTab({
+            url: '/pages/myPages/result/result'
+          })
     },function fail(data){
         // console.log(data);
     })

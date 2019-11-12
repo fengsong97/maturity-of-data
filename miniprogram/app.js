@@ -107,7 +107,8 @@ App({
         sessionKey: null,
         jeesite_sessionid: null,
         userInfo: null,
-        memberInfo: null //,
+        memberInfo: null ,
+        reloadResults:false
         // baseUrl: "http://localhost"
     }
 

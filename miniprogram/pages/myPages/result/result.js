@@ -15,7 +15,8 @@ Page({
    ec: {
       lazyLoad: true // 延迟加载
     },
-  resultsList:[]
+  resultsList:[],
+  resultDetail:{}
 
   },
   onShareAppMessage: function (res) {
@@ -28,21 +29,43 @@ Page({
   },
 
   onReady() {
+    console.log('onReady')
+    this.index()
   },
   onShow(){
     var that =this;
-    console.log('radar show')
-    //获取答题列表
-    // that.getResultsList(function a(data) {
-    //   that.data.resultsList=data.list;
-    // },function b(data) {
-    // });
+    console.log('onShow')
+    if(app.globalData.reloadResults){
+      app.globalData.reloadResults=false
+      console.log('刷新答题记录列表')
+      that.index()
 
+    }
+  },
+  index(){
+    var that =this;
+    //获取答题列表
+    that.getResultsList(function aaa(data) {
+        that.setData({
+          resultsList:data.list
+        })
+            var params = {id :data.list[0].id}
+            a.a_result_detail(params,
+              function success(data){
+                wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
+                that.begin()
+            },function fail(data){
+            })
+    },function bbb(data) {
+    });
+  },
+  begin(){
+    var that =this;
     that.echartsComponnet = that.selectComponent('#mychartRadar');
     if (!myChart){
       that.init_echarts(); //初始化图表
     }else{
-      that.setMyOption(myChart); //更新数据
+      that.setMyOption(); //更新数据
     }
   },
   //初始化图表
@@ -53,12 +76,12 @@ Page({
         width: width,
         height: height
       });
-      this.setMyOption(myChart);
+      this.setMyOption();
       // 注意这里一定要返回 chart 实例，否则会影响事件处理等
       return myChart;
     });
   },
-  setMyOption: function (myChart) {
+  setMyOption: function () {
     // myChart.clear();  // 清除
     myChart.setOption(this.getOption());  //获取新数据
   },
@@ -67,7 +90,7 @@ Page({
 
 
     var answers_title =  wx.getStorageSync('answers_title');
-    var answers =  wx.getStorageSync('answers');
+    var aresultDetailsList = wx.getStorageSync('aresultDetailsList');
 
     var results={
       titles :"",
@@ -87,10 +110,10 @@ Page({
       // values :[1,2,3] 
     };
 
-  for (var i = 0; i < answers.length; i++) {
+  for (var i = 0; i < aresultDetailsList.length; i++) {
     results.titles = answers_title;
-    results.names.push({name:answers[i].split("_")[2], max:5 });
-    results.values.push(answers[i].split("_")[4])
+    results.names.push({name:aresultDetailsList[i].testTextarea, max:5 });
+    results.values.push(aresultDetailsList[i].testSelectMultiple )
   }
 
   var option = {
@@ -120,7 +143,6 @@ Page({
       ]
     }]
   };
-  console.log(option)
   return option;
   },
 
@@ -142,11 +164,25 @@ Page({
 
     a.a_result_list(params,
       function success(data){
-        console.log("data")
+        console.log(data)
         doSuccess(data)
     },function fail(data){
         // console.log(data);
         doFail(data)
     })
+  },
+  getResultDetail(e){
+    var that =this;
+    var params = {id :e.currentTarget.dataset['result'].id}
+    a.a_result_detail(params,
+      function success(data){
+        wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
+        // console.log(data)
+        that.begin()
+    },function fail(data){
+        // console.log(data);
+        // doFail(data)
+    })
+
   }
 });
