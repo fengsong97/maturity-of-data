@@ -47,6 +47,9 @@ Page({
         that.setData({
           resultsList:data.list
         })
+        if(data.list.length==0){
+          return;
+        }
         //关闭下拉刷新
         that.stopPullDownRefresh();
 

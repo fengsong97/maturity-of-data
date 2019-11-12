@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view  >
 	<view class="page">
+        <view style="text-align: center;" wx:if="{{resultsList.length == 0}}">无评估记录</view>
         <view class="weui-panel">
           <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx <= 2}}">
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
