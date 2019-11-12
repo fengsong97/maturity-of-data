@@ -107,7 +107,7 @@ onShow:function(){
     for (var i = 0; i < that.data.lists.length; i++) {
       if(that.data.answers[i]==undefined){
          wx.showToast({
-          title: '该题未答',
+          title: '该题未答('+(i+1)+')',
           duration: 2000
         })
          that.toslider(i)
