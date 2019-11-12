@@ -1,6 +1,7 @@
 {
     "navigationBarTitleText": "最近三次评估结果",
 	"usingComponents": {
-    "ec-canvas": "../ec-canvas/ec-canvas"
-  	}
+    	"ec-canvas": "../ec-canvas/ec-canvas"
+  	},
+  	 "enablePullDownRefresh": true
 }

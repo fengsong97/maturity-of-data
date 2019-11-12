@@ -47,13 +47,16 @@ Page({
         that.setData({
           resultsList:data.list
         })
-            var params = {id :data.list[0].id}
-            a.a_result_detail(params,
-              function success(data){
-                wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
-                that.begin()
-            },function fail(data){
-            })
+        //关闭下拉刷新
+        that.stopPullDownRefresh();
+
+        var params = {id :data.list[0].id}
+        a.a_result_detail(params,
+          function success(data){
+            wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
+            that.begin()
+        },function fail(data){
+        })
     },function bbb(data) {
     });
   },
@@ -150,7 +153,7 @@ Page({
               userName:'wx%40冯松',
               userCode:'wx_wFNO5fBQhn_oau1'
             },
-            testSelect:"001",
+            testSelect:"",
             createDate_gte:"",
             createDate_lte:"",
             status:"0",
@@ -182,5 +185,18 @@ Page({
         // doFail(data)
     })
 
+  },
+
+  onPullDownRefresh() {
+    this.index()
+    console.log('onPullDownRefresh', new Date())
+  },
+
+  stopPullDownRefresh() {
+    wx.stopPullDownRefresh({
+      complete(res) {
+        console.log(res, new Date())
+      }
+    })
   }
 });

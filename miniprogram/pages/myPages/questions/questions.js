@@ -122,7 +122,7 @@ onLoad: function() {
             userCode: app.globalData.memberInfo.user.userCode,
             userName: app.globalData.memberInfo.user.userName,
           },
-          testSelect:"001",
+          testSelect:"试卷编号001",
           remarks:"",
           aresultDetailsList:[]
         };
