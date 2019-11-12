@@ -9,3 +9,30 @@ button{
 .mini-btn{
   margin-right: 10rpx;
 }
+
+
+
+.box {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 60rpx;
+  background: #179B16;
+}
+.btn {
+  margin: 30rpx 60rpx 0;
+}
+
+.box-transition {
+  transition: all 0.5s;
+}
+.box-moved {
+  margin-left: 590rpx;
+}
+
+@keyframes box-ani {
+  from {margin-left: 60rpx}
+  to {margin-left: 590rpx}
+}
+.box-animation {
+  animation: box-ani 1s alternate infinite;
+}

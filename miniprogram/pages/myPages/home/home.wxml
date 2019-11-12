@@ -1,35 +1,31 @@
-<!-- <import src="../../../common/head.wxml" />
-<import src="../../../common/foot.wxml" /> -->
 
 <view class="container">
-  <!-- <template is="head" data="{{title: 'button'}}"/> -->
+
+
+<view class="box {{extraClasses}}"
+  bindtransitionend="transitionEnd"
+  bindanimationstart="animationStart"
+  bindanimationiteration="animationIteration"
+> <image style="width:50px; height:50px" src="/image/WechatIMG6.png"></image>
+</view>
+<view style="text-align: center;">
+  <view>数据能力成熟度小程序</view>
+  <view>进入体验</view>
+  <view>需获取您的微信昵称头像等信息</view>
+  <view>望知晓</view>
+
+</view>
 
   <view class="page-body">
     <view class="btn-area" id="buttonContainer" style="top: 50%;">
-<!--       <button type="primary">页面主操作 Normal</button>
-      <button type="primary" loading="true">页面主操作 Loading</button>
-      <button type="primary" disabled="true">页面主操作 Disabled</button>
 
-      <button type="default">页面次要操作 Normal</button>
-      <button type="default" disabled="true">页面次要操作 Disabled</button>
-  open-type="getPhoneNumber" 
-      <button type="warn">警告类操作 Normal</button>
-      <button type="warn" disabled="true">警告类操作 Disabled</button>
- -->
       <view class="button-sp-area">
         <button type="primary" loading="{{loading}}" 
-                open-type="getUserInfo" bindgetuserinfo="getUserInfo" >微信登录</button>
-        <!-- <button type="primary" disabled="true" plain="true">不可点击的按钮</button> -->
+                open-type="getUserInfo" bindgetuserinfo="getUserInfo" >进入体验</button>
 
-<!--         <button type="default" plain="true">按钮</button>
-        <button type="default" disabled="true" plain="true">按钮</button>
-
-        <button class="mini-btn" type="primary" size="mini">按钮</button>
-        <button class="mini-btn" type="default" size="mini">按钮</button>
-        <button class="mini-btn" type="warn" size="mini">按钮</button> -->
       </view>
     </view>
   </view>
 
-  <!-- <template is="foot" /> -->
+
 </view>
