@@ -13,19 +13,16 @@ Page({
       path: 'pages/index/index'
     }
   },
-  onLoad: function() {
+  onShow: function() {
     var that = this;
-   // var time= setInterval(function(){
-      // console.log("等待1秒")
-      // if(app.globalData.jeesite_sessionid){
-        that.getHomePage();
-        // clearInterval(time);
-    //   }
-    // }, 1000)
-    // ;
+    that.getHomePage();
+    that.getShiTiLitst();
   },
   data: {
-    homeDes:""
+    homeDes:"",
+    shitiName:"",
+    ShiTiArray: [],
+    index: 0
   },
 
 
@@ -42,6 +39,19 @@ Page({
     var country = userInfo.country
 
     
+  },
+  getShiTiLitst(){
+    var that =this;
+    a.a_shiTiLitst(
+      function success(data){
+        that.setData({
+          ShiTiArray:data
+        });
+        that.saveShiti(0)
+        console.log(that.data.ShiTiArray)
+      },function fail(data){
+        // console.log(data);
+    })
   },
   getHomePage(){
     var that =this;
@@ -101,5 +111,14 @@ Page({
           function fail(msg){
          }
     )
-  }
+  },
+  bindPickerChange(e){
+    this.setData({   //给变量赋值
+      index: e.detail.value,  //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
+    });
+    this.saveShiti(e.detail.value);
+ },
+ saveShiti(index){
+  wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
+ }
 })

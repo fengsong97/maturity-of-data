@@ -12,7 +12,13 @@ Page({
 onLoad: function() {
   this.getQuestions();
 },
+onShow:function(){
+  this.setData({
+  shitiTitle:wx.getStorageSync("ShiTi").dictLabel
+})
+},
   data: {
+    shitiTitle:'',
     lists: [],
     answers:[],
     indicatorDots: true,
@@ -25,7 +31,11 @@ onLoad: function() {
   },
   getQuestions(){
     var that =this;
-    a.a_questions(
+    var params={
+      testSelect: wx.getStorageSync("ShiTi").dictValue,
+      status:"0"
+    };
+    a.a_questions(params,
       function success(data){
         that.setData({
           lists:data.list
@@ -122,7 +132,7 @@ onLoad: function() {
             userCode: app.globalData.memberInfo.user.userCode,
             userName: app.globalData.memberInfo.user.userName,
           },
-          testSelect:"试卷编号001",
+          testSelect:wx.getStorageSync("ShiTi").dictLabel,
           remarks:"",
           aresultDetailsList:[]
         };

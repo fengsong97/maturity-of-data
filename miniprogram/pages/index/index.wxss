@@ -1,4 +1,10 @@
 @import "../common/index.wxss";
+@import "weui.wxss";
+
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
 
 .weui-agree__link {
   display: inline;

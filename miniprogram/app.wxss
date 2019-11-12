@@ -148,7 +148,7 @@ input {
   box-sizing: border-box;
   width: 100%;
   padding: 0 30rpx;
-  top: 50%;
+  /*top: 50%;*/
   position: absolute;
 
 }

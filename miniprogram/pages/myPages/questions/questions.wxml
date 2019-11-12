@@ -22,7 +22,7 @@
                           <view class="swiper-item ">   
                            <view style="box-sizing:border-box;padding:0 80rpx;">
                             <view style="text-align:center;"> 
-                              <text>第{{list.id}}题</text> 
+                              <text>{{shitiTitle}}-第{{currentIndex+1}}题</text> 
                             </view> 
                            
                             <text>{{list.title}}</text>

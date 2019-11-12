@@ -34,9 +34,9 @@ var jsonToUrl = require("../api/jsonToUrl.js")
 }
 
 
-  function a_questions(doSuccess, doFail){
+  function a_questions(params,doSuccess, doFail){
     var that =this;
-    startRequest.getData("a/gen/questions/listData.json?",
+    startRequest.getData("a/gen/questions/listData.json?"+jsonToUrl.change(params),
       function success(data) {
       console.log(data);
       doSuccess(data)
@@ -145,6 +145,18 @@ var jsonToUrl = require("../api/jsonToUrl.js")
     })
 }
 
+//答题接口 detail
+  function a_shiTiLitst(doSuccess, doFail){
+    startRequest.getData("a/sys/dictData/listData.json?dictType=question_shijuan&status=0",
+      function success(data) {
+        // console.log(data)
+        doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
+
 //后台退出接口
 
 
@@ -157,3 +169,4 @@ var jsonToUrl = require("../api/jsonToUrl.js")
  module.exports.a_result_add = a_result_add;
  module.exports.a_result_list = a_result_list;
  module.exports.a_result_detail = a_result_detail;
+ module.exports.a_shiTiLitst = a_shiTiLitst;

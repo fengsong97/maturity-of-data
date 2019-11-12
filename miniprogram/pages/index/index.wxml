@@ -18,12 +18,20 @@
         </view>
     </view>
   </view>
-
+  <view class="section">
+      <picker bindchange="bindPickerChange" value="{{ShiTiArray[index].dictLabel}}" range="{{ShiTiArray}}"  range-key="{{'dictLabel'}}">
+        <view class="picker">
+          试题选择:     {{ShiTiArray[index].dictLabel}}
+        </view>
+      </picker>
+</view>
     <view class="btn-area" id="buttonContainer">
+      
       <view class="button-sp-area">
         <button type="primary"  bindtap="start">开始评估</button>
        <!--  <button open-type="getUserInfo">授权</button>
          <button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">后几号</button> -->
       </view>
     </view>
+
 </view>
