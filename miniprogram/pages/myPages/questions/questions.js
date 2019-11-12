@@ -96,16 +96,24 @@ onShow:function(){
     // })
     console.log(this.data);
   },
+  toslider(index){
+    this.setData({
+      currentIndex: index
+    })
+  },
   submit(e) {
     var that=this;
-    if(that.data.answers.length==0){
-      wx.showToast({
-        title: '请作答',
-        icon: 'success',
-        duration: 2000
-      })
+
+    for (var i = 0; i < that.data.lists.length; i++) {
+      if(that.data.answers[i]==undefined){
+         wx.showToast({
+          title: '该题未答',
+          duration: 2000
+        })
+         that.toslider(i)
       return;
-    }
+     }
+   }
 
     // wx.setStorageSync('answers',  that.data.answers);
     wx.setStorageSync('answers_title',  that.data.answers[0]?that.data.answers[0].testSelect:"默认");
