@@ -32,6 +32,7 @@
      data: postData,
      method: 'POST',
      success: function (res) {
+       if(!toHome(res)) {return};
        //参数值为res.data,直接将返回的数据传入
        doSuccess(res.data);
        wx.hideToast()
@@ -61,6 +62,7 @@
      },
      method: 'GET',
      success: function (res) {
+       if(!toHome(res)) {return};
        doSuccess(res.data);
        wx.hideToast()
      },
@@ -71,6 +73,24 @@
    })
 
 }
+
+//跳转到home页
+  function toHome(res) {
+    if(JSON.stringify(res.data) == "{}"){
+        wx.showToast({
+                  title: '账户失效,再登录',
+                  icon: 'loading',
+                  duration: 5000
+        })
+         wx.navigateTo({
+            url: '/pages/myPages/home/home'
+       })
+         return false
+      }
+    return true;
+  }
+
+    
 
  
  /**

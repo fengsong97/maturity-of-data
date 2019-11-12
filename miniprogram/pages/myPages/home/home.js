@@ -14,10 +14,10 @@ const pageObject = {
             success: res => {
               if (res.authSetting['scope.userInfo']) {
                  this.setData({
-              loading: true,
-              disabled: true
+                  loading: true,
+                  disabled: true
 
-              }) 
+                  }) 
 
     }}})
 
@@ -58,7 +58,7 @@ const pageObject = {
       if(e.detail.errMsg ="getUserInfo:ok"){
          this.setData({
               loading: true,
-              disabled: true
+              disabled: false
 
               }) ;
          
