@@ -153,8 +153,8 @@ Page({
   getResultsList(doSuccess, doFail){
     var params ={
             testUser:{
-              userName:'wx%40冯松',
-              userCode:'wx_wFNO5fBQhn_oau1'
+              userName:app.globalData.memberInfo.user.userName,
+              userCode:app.globalData.memberInfo.user.userCode
             },
             testSelect:"",
             createDate_gte:"",
