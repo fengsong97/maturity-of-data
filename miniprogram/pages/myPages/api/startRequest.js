@@ -16,6 +16,11 @@
   * doFail：失败的回调函数
   */
  function postData(url, postData, doSuccess, doFail) {
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading'
+    })
+
   var jeesite_sessionid = wx.getStorageSync('jeesite_sessionid');
    
    wx.request({
@@ -29,9 +34,11 @@
      success: function (res) {
        //参数值为res.data,直接将返回的数据传入
        doSuccess(res.data);
+       wx.hideToast()
      },
      fail: function () {
        doFail();
+       wx.hideToast()
      },
    })
 
@@ -40,8 +47,13 @@
  
  //GET请求，不需传参，直接URL调用，
  function getData(url, doSuccess, doFail) {
+  wx.showToast({
+    title: '加载中',
+    icon: 'loading'
+  })
+
   var jeesite_sessionid = wx.getStorageSync('jeesite_sessionid');
-  
+
    wx.request({
      url: host + url +"&__sid="+jeesite_sessionid,
      header: {
@@ -50,9 +62,11 @@
      method: 'GET',
      success: function (res) {
        doSuccess(res.data);
+       wx.hideToast()
      },
      fail: function () {
        doFail();
+       wx.hideToast()
      },
    })
 
