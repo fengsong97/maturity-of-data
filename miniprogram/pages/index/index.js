@@ -9,7 +9,7 @@ Page({
   },
   onShareAppMessage() {
     return {
-      title: '数据成熟度小工具',
+      title: '数据成熟度工具',
       path: 'pages/index/index'
     }
   },

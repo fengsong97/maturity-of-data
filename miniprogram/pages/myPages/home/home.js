@@ -26,8 +26,8 @@ const pageObject = {
 
   onShareAppMessage() {
     return {
-      title: 'button',
-      path: 'page/component/pages/button/button'
+      title: '数据成熟度工具',
+      path: 'pages/index/index'
     }
   },
 

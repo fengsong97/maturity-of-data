@@ -19,12 +19,10 @@ Page({
   resultDetail:{}
 
   },
-  onShareAppMessage: function (res) {
+  onShareAppMessage() {
     return {
-      title: 'ECharts 可以在微信小程序中使用啦！',
-      path: '/pages/index/index',
-      success: function () { },
-      fail: function () { }
+      title: '数据成熟度工具',
+      path: 'pages/index/index'
     }
   },
 

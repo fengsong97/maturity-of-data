@@ -5,8 +5,8 @@ const app = getApp();
 Page({
   onShareAppMessage() {
     return {
-      title: 'swiper',
-      path: 'pages/component/pages/swiper/swiper'
+      title: '数据成熟度工具',
+      path: 'pages/index/index'
     }
   },
 onLoad: function() {
