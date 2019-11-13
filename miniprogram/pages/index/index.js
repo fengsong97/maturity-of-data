@@ -22,6 +22,7 @@ Page({
           that.getShiTiLitst();
     }else{
       wx.setStorageSync('ShiTi',{dictValue:"错误信息"})
+      wx.setStorageSync('jeesite_sessionid','错误信息');
 
     }}})
 
