@@ -21,7 +21,7 @@
     <view class="btn-area" id="buttonContainer" style="top: 50%;">
 
       <view class="button-sp-area">
-        <button type="primary" loading="{{loading}}" 
+        <button type="primary"  
                 open-type="getUserInfo" bindgetuserinfo="getUserInfo" >进入体验</button>
 
       </view>
