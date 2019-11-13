@@ -1,27 +1,17 @@
 <view class="index">
   <view style="padding:20rpx;text-align:center;">
-    <image class="index-logo" src="../myPages/resources/kind/logo.png"></image>
+    <image class="index-logo" src="/image/WechatIMG6.png"></image>
     <view class="index-desc">工具说明:</view>
   </view>
 
 
-
-
-    <view class="index-bd">
-    <view class="kind-list">
-        <view class="kind-list-item">
-
-          <view id="" class="kind-list-item-hd " style="white-space:pre;">
-            <view class="kind-list-text">{{homeDes}}</view>
-          </view>
-
-        </view>
-    </view>
+  <view class="index-bd" style="padding: 20px">
+      <text>{{homeDes}}</text>
   </view>
   <view class="section">
       <picker bindchange="bindPickerChange" value="{{ShiTiArray[index].dictLabel}}" range="{{ShiTiArray}}"  range-key="{{'dictLabel'}}">
         <view class="picker">
-          试题选择:     {{ShiTiArray[index].dictLabel}}
+          试题选择:    {{ShiTiArray[index].dictLabel ||'默认试题'}}
         </view>
       </picker>
 </view>

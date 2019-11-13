@@ -5,7 +5,7 @@
         <!-- <view class="page-body-title">用户信息</view> -->
         <block wx:if="{{hasUserInfo === true}}">
           <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
-          <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+          <text class="userinfo-nickname">{{userInfo.nickName||'暂无信息'}}</text>
         </block>
         <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
       </view>

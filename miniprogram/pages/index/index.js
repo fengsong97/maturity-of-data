@@ -15,12 +15,20 @@ Page({
   },
   onShow: function() {
     var that = this;
-    that.getHomePage();
-    that.getShiTiLitst();
+   wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+          that.getHomePage();
+          that.getShiTiLitst();
+    }else{
+      wx.setStorageSync('ShiTi',{dictValue:"错误信息"})
+
+    }}})
+
   },
   data: {
-    homeDes:"",
-    shitiName:"",
+    homeDes:"这是一个数据能力熟度小程序, 帮助个人或公司来加深对数据现状的认识",
+    shitiName:"默认试题",
     ShiTiArray: [],
     index: 0
   },
