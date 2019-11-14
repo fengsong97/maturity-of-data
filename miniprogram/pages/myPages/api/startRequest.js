@@ -82,7 +82,7 @@
                   icon: 'loading',
                   duration: 5000
         })
-         wx.navigateTo({
+         wx.redirectTo({
             url: '/pages/myPages/home/home'
        })
          return false
