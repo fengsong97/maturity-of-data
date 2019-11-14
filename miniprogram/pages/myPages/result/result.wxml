@@ -8,7 +8,7 @@
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" bindtap="getResultDetail" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
                     <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">{{result.testSelect}}</view>
-                    <view class="weui-media-box__desc">{{result.remarks}}</view>
+                    <view class="weui-media-box__desc">{{result.testSelectRemarks}}</view>
                     <view class="weui-media-box__info" style="margin-top: 0px" >
                         <view class="weui-media-box__info__meta"  >提交时间: {{result.createDate}}</view>
                     </view>

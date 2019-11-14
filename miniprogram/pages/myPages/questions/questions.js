@@ -140,7 +140,7 @@ onShow:function(){
             userCode: app.globalData.memberInfo.user.userCode,
             userName: app.globalData.memberInfo.user.userName,
           },
-          testSelect:wx.getStorageSync("ShiTi").dictLabel,
+          testSelect:wx.getStorageSync("ShiTi").dictValue,
           remarks:"",
           aresultDetailsList:[]
         };

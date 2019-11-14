@@ -44,12 +44,19 @@ Page({
     var that =this;
     //获取答题列表
     that.getResultsList(function aaa(data) {
-        that.setData({
-          resultsList:data.list
-        })
         if(data.list.length==0){
           return;
         }
+        for (var i = 0; i < data.list.length; i++) {
+          //所属试题
+          var shiti=app.globalData.shiTiZiDianKeyValue[data.list[i].testSelect]
+          data.list[i].testSelect=shiti ? shiti.name: data.list[i].testSelect
+          data.list[i].testSelectRemarks=shiti ? shiti.remarks :""
+        }
+        that.setData({
+          resultsList:data.list
+        })
+
         //关闭下拉刷新
         that.stopPullDownRefresh();
 

@@ -57,7 +57,8 @@ Page({
           ShiTiArray:data
         });
         that.saveShiti(0)
-        console.log(that.data.ShiTiArray)
+        console.log(data)
+        that.saveShiTiArray(data)
       },function fail(data){
         // console.log(data);
     })
@@ -129,5 +130,12 @@ Page({
  },
  saveShiti(index){
   wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
+ },
+ saveShiTiArray(array){
+  app.globalData.shiTiZiDianArray=array;
+  for (var i = 0; i < array.length; i++) {
+    app.globalData.shiTiZiDianKeyValue[array[i].dictValue]={     name:array[i].dictLabel,      remarks:array[i].remarks    }
  }
+}
+
 })

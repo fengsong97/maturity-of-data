@@ -108,7 +108,9 @@ App({
         jeesite_sessionid: null,
         userInfo: null,
         memberInfo: null ,
-        reloadResults:false
+        reloadResults:false,
+        shiTiZiDianArray:[],
+        shiTiZiDianKeyValue:{},
         // baseUrl: "http://localhost"
     }
 
