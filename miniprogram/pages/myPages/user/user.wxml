@@ -7,6 +7,12 @@
           <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}"></image>
           <text class="userinfo-nickname">{{userInfo.nickName||'暂无信息'}}</text>
         </block>
+        <view class="page-body-line" style="text-align: center;">
+          <text class="page-body-title">
+          点击气泡icon打开客服消息界面
+         </text>
+        <contact-button size="60" type="primary" session-from="weapp"></contact-button>
+      </view>
         <!-- <button wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button> -->
       </view>
     </view>
