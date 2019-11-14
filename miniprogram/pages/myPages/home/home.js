@@ -98,6 +98,11 @@ const pageObject = {
   },
   animationIteration: function () {
     console.log('动画进行中')
+  },
+  dontLogin(){
+    wx.navigateBack({
+      delta: 10
+    })
   }
   
 }

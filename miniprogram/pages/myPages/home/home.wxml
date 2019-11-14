@@ -10,7 +10,7 @@
 </view>
 <view style="text-align: center;">
   <view>数据能力成熟度小程序</view>
-  <view>进入体验</view>
+  <view>开始评估</view>
   <view>需获取您的微信昵称头像等信息</view>
   <view>以便为您保存评估记录</view>
   <view>请知晓</view>
@@ -22,7 +22,11 @@
 
       <view class="button-sp-area">
         <button type="primary"  
-                open-type="getUserInfo" bindgetuserinfo="getUserInfo" >进入体验</button>
+                open-type="getUserInfo" bindgetuserinfo="getUserInfo" >微信登录</button>
+
+      </view>    
+      <view class="button-sp-area" style="text-align: center">
+        <button type="primary" plain="true"size="mini" bindtap="dontLogin">我是游客,不登录</button>
 
       </view>
     </view>
