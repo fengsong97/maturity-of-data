@@ -10,6 +10,7 @@
         <view class="page-body-line" style="text-align: center;">
           <text class="page-body-title">
           点击气泡icon打开客服消息界面
+          可反馈问题
          </text>
         <contact-button size="60" type="primary" session-from="weapp"></contact-button>
       </view>
