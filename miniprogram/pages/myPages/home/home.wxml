@@ -26,7 +26,7 @@
 
       </view>    
       <view class="button-sp-area" style="text-align: center">
-        <button type="primary" plain="true"size="mini" bindtap="dontLogin">我是游客,不登录</button>
+        <button type="primary" plain="true"size="mini" bindtap="dontLogin">我随便看看,不登录</button>
 
       </view>
     </view>
