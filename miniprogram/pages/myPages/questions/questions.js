@@ -27,6 +27,7 @@ onShow:function(){
     interval: 2000,
     duration: 500,
     currentIndex: 0,
+    currentName: '',
     disable: false
   },
   getQuestions(){
@@ -40,7 +41,8 @@ onShow:function(){
     a.a_questions(params,
       function success(data){
         that.setData({
-          lists:data.list
+          lists:data.list,
+          currentName:data.list[0].title
         })
     },function fail(data){
         // console.log(data);
@@ -86,7 +88,8 @@ onShow:function(){
   //轮播图的切换事件
   swiperChange(e) {
     this.setData({
-      currentIndex: e.detail.current
+      currentIndex: e.detail.current,
+      currentName: this.data.lists[e.detail.current].title
     })
     console.log(this.data.currentIndex)
   },
@@ -100,7 +103,8 @@ onShow:function(){
   },
   toslider(index){
     this.setData({
-      currentIndex: index
+      currentIndex: index,
+      currentName: this.data.lists[index].title
     })
   },
   submit(e) {
