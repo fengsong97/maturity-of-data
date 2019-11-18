@@ -21,7 +21,7 @@ onShow:function(){
     shitiTitle:'',
     lists: [],
     answers:[],
-    indicatorDots: true,
+    indicatorDots: false,
     vertical: false,
     autoplay: false,
     interval: 2000,
@@ -33,7 +33,9 @@ onShow:function(){
     var that =this;
     var params={
       testSelect: wx.getStorageSync("ShiTi").dictValue,
-      status:"0"
+      status:"0",
+      pageNo:'1',
+      pageSize:'50'
     };
     a.a_questions(params,
       function success(data){
