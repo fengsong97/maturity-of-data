@@ -27,21 +27,17 @@
                            
                             <text style="font-weight: 600;">{{list.title}}</text>
                           </view>
-
-
                             <view class="page-section page-section-gap">
                               <view class="page-section-title"></view>
                               <radio-group class="group" id="{{currentIndex}}" bindchange="radioChange">
                                 <block wx:for="{{list.answersList}}" wx:key="*this" wx:for-item="answer">
-                                    <view style="margin:30rpx 0;" >
+                                      <label class="label-2-text" for="{{list.id}}{{answer.id}}">
+                                    <view style="margin:15px 0;" >
                                       <radio id="{{list.id}}{{answer.id}}" value="{{currentIndex}}_{{list.id}}_{{list.title}}_{{answer.id}}_{{answer.testSelect}}" ></radio>
-                                      <label class="label-2-text" for="{{list.id}}{{answer.id}}"><text>{{answer.testSelect}}: {{answer.testInput}}</text></label>
+                                          <text>{{answer.testSelect}}: {{answer.testInput}}</text>
                                     </view>
+                                      </label>
                                  </block>
-                        <!--          <view style="margin:30rpx 0;">
-                                  <radio id="b{{list}}" value="1" ></radio>
-                                  <label class="label-2-text" for="b{{list}}"><text>B: bbbbb</text></label>
-                                </view> -->
                               </radio-group>
                             </view>
                         </view>
