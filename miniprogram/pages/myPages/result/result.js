@@ -147,6 +147,10 @@ Page({
     series: [{
       name: '数据成熟度',
       type: 'radar',
+      // tooltip: {
+      //   trigger: 'item'
+      // },
+      itemStyle: {normal: {areaStyle: {type: 'default'}}},
       data: [{
         value: results.values,
         name: results.titles[0]
