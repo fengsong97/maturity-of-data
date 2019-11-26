@@ -100,9 +100,9 @@ const pageObject = {
     console.log('动画进行中')
   },
   dontLogin(){
-    wx.navigateBack({
-      delta: 10
-    })
+    wx.switchTab({
+      url: '/pages/index/index'
+    });
   }
   
 }

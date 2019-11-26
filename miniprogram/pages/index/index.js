@@ -4,8 +4,27 @@ var a = require("../myPages/api/a.js")
 const app = getApp()
 
 Page({
-  onShow() {
-    wx.reportAnalytics('enter_home_programmatically', {})
+  onReady() {
+    var that = this;
+    console.log("初始化")
+     wx.getSetting({
+      success: res => {
+        if (res.authSetting['scope.userInfo']) {
+
+    }else{
+      wx.setStorageSync('ShiTi',{dictValue:"错误信息"})
+      wx.setStorageSync('jeesite_sessionid','错误信息');
+
+    }}})
+    
+    var time = setInterval(function () {
+      if(app.globalData.jeesite_sessionid){
+           
+                  that.getHomePage();
+                  that.getShiTiLitst();
+            clearInterval(time)
+      }
+    },100)
   },
   onShareAppMessage() {
     return {
@@ -14,17 +33,6 @@ Page({
     }
   },
   onShow: function() {
-    var that = this;
-   wx.getSetting({
-      success: res => {
-        if (res.authSetting['scope.userInfo']) {
-          that.getHomePage();
-          that.getShiTiLitst();
-    }else{
-      wx.setStorageSync('ShiTi',{dictValue:"错误信息"})
-      wx.setStorageSync('jeesite_sessionid','错误信息');
-
-    }}})
 
   },
   data: {
@@ -92,9 +100,16 @@ Page({
   }
   ,
   start(e) {
-    wx.navigateTo({
-    url: '../myPages/questions/questions'
-    })
+    if(!app.globalData.jeesite_sessionid){
+       wx.redirectTo({
+            url: '/pages/myPages/home/home'
+       })
+    }else{
+      wx.navigateTo({
+            url: '/pages/myPages/questions/questions'
+      })
+    }
+
   },
   getPhoneNumber: function (e) {
     var that=this;
