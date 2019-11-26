@@ -6,14 +6,22 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
+		"coverView": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.0",
