@@ -1,4 +1,3 @@
- var app = getApp();
 
   function getStorage(keyname){
 
