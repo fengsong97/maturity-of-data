@@ -153,7 +153,7 @@ Page({
       // tooltip: {
       //   trigger: 'item'
       // },
-      // itemStyle: {normal: {areaStyle: {type: 'default'}}},
+      itemStyle: {normal: {areaStyle: {type: 'default'}}},
       data: [{
         value: results.values,
         name: results.titles[0]
