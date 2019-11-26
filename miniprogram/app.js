@@ -1,4 +1,3 @@
-const config = require('./config')
 var a = require("pages/myPages/api/a.js")
 
 App({

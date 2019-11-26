@@ -48,7 +48,6 @@
   "navigateToMiniProgramAppIdList": [
     "wx4f1b24bdc99fa23b"
   ],
-  "workers": "workers",
   "debug": false,
   "permission": {
     "scope.userLocation": {
