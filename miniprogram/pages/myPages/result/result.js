@@ -140,6 +140,9 @@ Page({
     yAxis: {
       show: false
     },
+    legend: {
+        data: []
+    },
     radar: {
       shape: 'circle',
       indicator: results.names
