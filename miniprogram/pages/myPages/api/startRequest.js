@@ -1,8 +1,5 @@
 
-  function getStorage(keyname){
-
-
-  }
+ const app = getApp();
  //项目URL相同部分，减轻代码量，同时方便项目迁移
  //这里因为我是本地调试，所以host不规范，实际上应该是你备案的域名信息
  var host = 'https://a.fuduo.wang/'; 
@@ -81,9 +78,18 @@
                   icon: 'loading',
                   duration: 5000
         })
-         wx.redirectTo({
-            url: '/pages/myPages/home/home'
-       })
+
+        wx.getSetting({
+          success: res => {
+            if (res.authSetting['scope.userInfo']) {
+              getApp().getWxSetting();
+        }else{
+            wx.redirectTo({
+                url: '/pages/myPages/home/home'
+            })
+
+        }}})
+         
          return false
       }
     return true;
