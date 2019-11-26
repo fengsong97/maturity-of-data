@@ -73,11 +73,11 @@ Page({
   begin(){
     var that =this;
     that.echartsComponnet = that.selectComponent('#mychartRadar');
-    if (!myChart){
+    // if (!myChart){
       that.init_echarts(); //初始化图表
-    }else{
-      that.setMyOption(); //更新数据
-    }
+    // }else{
+      // that.setMyOption(); //更新数据
+    // }
   },
   //初始化图表
   init_echarts: function () {
@@ -150,7 +150,7 @@ Page({
       // tooltip: {
       //   trigger: 'item'
       // },
-      itemStyle: {normal: {areaStyle: {type: 'default'}}},
+      // itemStyle: {normal: {areaStyle: {type: 'default'}}},
       data: [{
         value: results.values,
         name: results.titles[0]
