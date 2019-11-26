@@ -36,7 +36,8 @@ onShow:function(){
       testSelect: wx.getStorageSync("ShiTi").dictValue,
       status:"0",
       pageNo:'1',
-      pageSize:'50'
+      pageSize:'50',
+      orderBy: 'a.test_select_multiple desc'
     };
     a.a_questions(params,
       function success(data){
