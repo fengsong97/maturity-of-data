@@ -10,6 +10,12 @@ Page({
     }
   },
 onLoad: function() {
+  this.setData({
+    shiTiId:wx.getStorageSync("ShiTi").dictValue
+  });
+  this.setData({
+    question2_answers:wx.getStorageSync("question2_answers")
+  });
   this.getQuestions();
 },
 onShow:function(){
@@ -18,7 +24,9 @@ onShow:function(){
 })
 },
   data: {
+    shiTiId:'',
     shitiTitle:'',
+    question2_answers:'',
     lists: [],
     answers:[],
     indicatorDots: false,
@@ -32,6 +40,25 @@ onShow:function(){
   },
   getQuestions(){
     var that =this;
+    if(wx.getStorageSync("ShiTi").dictValue!="003"){
+      a.a_q_tree({},
+        function success(data){
+          var lists=data.filter(function (item) {
+            return item.treeLevel===3 && item.pIds.split(",")[1]===that.data.shiTiId;
+          });
+          for(var i=0;i<lists.length;i++){
+            lists[i].answersList=wx.getStorageSync("question2_answers");
+          }
+          that.setData({
+            lists:lists
+          })
+      },function fail(data){
+          // console.log(data);
+      })
+
+      return;
+    }
+
     var params={
       testSelect: wx.getStorageSync("ShiTi").dictValue,
       status:"0",
@@ -102,6 +129,15 @@ onShow:function(){
     // })
     console.log(this.data);
   },
+  radioChange2:function(e) {
+    console.log(e);
+    this.data.answers[e.currentTarget.id]=e.detail.value
+    this.data.lists[this.data.currentIndex].result_=e.detail.value
+    // this.setData({
+    //   answers["2"]:'2'
+    // })
+    console.log(this.data);
+  },
   toslider(index){
     this.setData({
       currentIndex: index,
@@ -122,16 +158,21 @@ onShow:function(){
      }
    }
 
-    // wx.setStorageSync('answers',  that.data.answers);
-    wx.setStorageSync('answers_title',  that.data.answers[0]?that.data.answers[0].testSelect:"默认");
+    
+    if(that.data.shiTiId==="003") {
+      wx.setStorageSync('answers_title',  that.data.answers[0]?that.data.answers[0].testSelect:"默认");
+    }
     wx.showModal({
       title: '确认提交吗?',
       content: '已答'+that.data.answers.length+'题,共'+that.data.lists.length+'题',
       success (res) {
         if (res.confirm) {
           console.log('用户点击确定')
-          that.result_add()
-
+          if(that.data.shiTiId==="003") {
+            that.result_add()
+          }else{
+            that.result_add2()
+          }
 
 
         } else if (res.cancel) {
@@ -196,5 +237,9 @@ onShow:function(){
     },function fail(data){
         // console.log(data);
     })
+  },
+
+  result_add2(){
+
   }
 })

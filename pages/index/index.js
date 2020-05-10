@@ -22,6 +22,7 @@ Page({
            
                   that.getHomePage();
                   that.getShiTiLitst();
+                  that.getQuestion2_answers();
             clearInterval(time)
       }
     },100)
@@ -59,7 +60,7 @@ Page({
   },
   getShiTiLitst(){
     var that =this;
-    a.a_shiTiLitst(
+    a.a_dicList("question_shijuan",
       function success(data){
         that.setData({
           ShiTiArray:data
@@ -67,6 +68,16 @@ Page({
         that.saveShiti(0)
         console.log(data)
         that.saveShiTiArray(data)
+      },function fail(data){
+        // console.log(data);
+    })
+  },
+  getQuestion2_answers(){
+    var that =this;
+    a.a_dicList("question2_answers",
+      function success(data){
+        that.saveQuestion2_answers(data)
+        console.log(data)
       },function fail(data){
         // console.log(data);
     })
@@ -145,6 +156,9 @@ Page({
  },
  saveShiti(index){
   wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
+ }, 
+ saveQuestion2_answers(data){
+  wx.setStorageSync('question2_answers',data)
  },
  saveShiTiArray(array){
   app.globalData.shiTiZiDianArray=array;

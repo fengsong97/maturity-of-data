@@ -33,10 +33,23 @@ var jsonToUrl = require("../api/jsonToUrl.js")
     })
 }
 
-
+  //问题列表
   function a_questions(params,doSuccess, doFail){
     var that =this;
     startRequest.getData("a/gen/questions/listData.json?"+jsonToUrl.change(params),
+      function success(data) {
+      console.log(data);
+      doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
+// http://localhost:8980/a/gen/aquestionTree/treeData
+  //问题列表_tree
+  function a_q_tree(params,doSuccess, doFail){
+    var that =this;
+    startRequest.getData("a/gen/aquestionTree/treeData.json?"+jsonToUrl.change(params),
       function success(data) {
       console.log(data);
       doSuccess(data)
@@ -145,15 +158,16 @@ var jsonToUrl = require("../api/jsonToUrl.js")
     })
 }
 
-//答题接口 detail
-  function a_shiTiLitst(doSuccess, doFail){
-    startRequest.getData("a/sys/dictData/listData.json?dictType=question_shijuan&status=0",
+
+//字典接口
+  function a_dicList(dictType,doSuccess, doFail){
+    startRequest.getData("a/sys/dictData/listData.json?dictType="+dictType+"&status=0",
       function success(data) {
         // console.log(data)
         doSuccess(data)
     },function fail(data) {
       // console.log(data)
-      doFail(data)
+        doFail(data)
     })
 }
 
@@ -166,7 +180,8 @@ var jsonToUrl = require("../api/jsonToUrl.js")
  module.exports.a_sign_in = a_sign_in;
  module.exports.a_homePage = a_homePage;
  module.exports.a_questions = a_questions;
+ module.exports.a_q_tree = a_q_tree;
  module.exports.a_result_add = a_result_add;
  module.exports.a_result_list = a_result_list;
  module.exports.a_result_detail = a_result_detail;
- module.exports.a_shiTiLitst = a_shiTiLitst;
+ module.exports.a_dicList = a_dicList;
