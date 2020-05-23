@@ -290,11 +290,11 @@ onShow:function(){
               nengliScrOne=nengliScrOne+obj.aresultsTreeDetailsList[j].weightScore
           }
         }
-        nengliObj[nengLiArr[i]]=nengliScrOne/100;
+        nengliObj[nengLiArr[i]]=(nengliScrOne/100).toFixed(2);
     }
     //计算公式平均值
-    obj.companyAvg=answersSum/nengliNum/100;
-    obj.analysis=JSON.stringify(nengliObj);
+    obj.companyAvg=(answersSum/nengliNum/100).toFixed(2);
+    obj.analysis=JSON.stringify(nengliObj).replace(/\"/g,"'");
     a.a_result_tree_add(obj,
       function success(data){
           app.globalData.reloadResults=true;
