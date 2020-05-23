@@ -294,7 +294,7 @@ onShow:function(){
     }
     //计算公式平均值
     obj.companyAvg=answersSum/nengliNum/100;
-    obj;
+    obj.analysis=JSON.stringify(nengliObj);
     a.a_result_tree_add(obj,
       function success(data){
           app.globalData.reloadResults=true;
