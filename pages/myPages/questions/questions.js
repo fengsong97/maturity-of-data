@@ -298,9 +298,9 @@ onShow:function(){
     a.a_result_tree_add(obj,
       function success(data){
           app.globalData.reloadResults=true;
-          // wx.switchTab({
-          //   url: '/pages/myPages/result/result'
-          // })
+          wx.switchTab({
+            url: '/pages/myPages/result/result'
+          })
     },function fail(data){
         // console.log(data);
     })
