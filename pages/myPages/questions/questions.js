@@ -277,19 +277,30 @@ onShow:function(){
     //计算 有几个能力域 1
     var nengLiArr=[];
     for(var i=0;i<lists.length;i++){
-      nengLiArr.push(lists[1].treeNames.split("/")[0]);
+      nengLiArr.push(lists[1].treeNames.split("/")[1]);
     }
     //计算 有几个能力域 2
-    var nengliNum=this.uniq(nengLiArr).length;
+    nengLiArr=this.uniq(nengLiArr);
+    var nengliNum=nengLiArr.length;
+    var nengliObj={}
+    for(var i=0;i<nengLiArr.length;i++){
+        var nengliScrOne=0;
+        for (var j = 0; j < obj.aresultsTreeDetailsList.length; j++) {
+          if(obj.aresultsTreeDetailsList[j].treeNames.indexOf(nengLiArr[i])>=0){
+              nengliScrOne=nengliScrOne+obj.aresultsTreeDetailsList[j].weightScore
+          }
+        }
+        nengliObj[nengLiArr[i]]=nengliScrOne/100;
+    }
     //计算公式平均值
     obj.companyAvg=answersSum/nengliNum/100;
     obj;
     a.a_result_tree_add(obj,
       function success(data){
           app.globalData.reloadResults=true;
-          wx.switchTab({
-            url: '/pages/myPages/result/result'
-          })
+          // wx.switchTab({
+          //   url: '/pages/myPages/result/result'
+          // })
     },function fail(data){
         // console.log(data);
     })
