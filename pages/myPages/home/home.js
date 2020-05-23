@@ -97,7 +97,7 @@ const pageObject = {
     console.log('动画已开始')
   },
   animationIteration: function () {
-    console.log('动画进行中')
+    // console.log('动画进行中')
   },
   dontLogin(){
     wx.switchTab({

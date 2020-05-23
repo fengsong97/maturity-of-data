@@ -34,7 +34,10 @@ Page({
     }
   },
   onShow: function() {
-
+    this.setData({
+      index:app.globalData.shiTiIndex||0
+    })
+    
   },
   data: {
     homeDes:"这是一个数据能力熟度小程序, 帮助个人或公司来加深对数据现状的认识",
@@ -156,6 +159,7 @@ Page({
  },
  saveShiti(index){
   wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
+  app.globalData.shiTiIndex=index;
  }, 
  saveQuestion2_answers(data){
   wx.setStorageSync('question2_answers',data)

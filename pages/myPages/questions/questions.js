@@ -277,7 +277,7 @@ onShow:function(){
     //计算 有几个能力域 1
     var nengLiArr=[];
     for(var i=0;i<lists.length;i++){
-      nengLiArr.push(lists[1].treeNames.split("/")[1]);
+      nengLiArr.push(lists[i].treeNames.split("/")[1]);
     }
     //计算 有几个能力域 2
     nengLiArr=this.uniq(nengLiArr);

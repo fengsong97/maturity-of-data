@@ -10,13 +10,18 @@ var myChart = null;
 Page({
 
 	data: {
-	windowWidth:app.globalData.systemInfo.windowWidth,
-	windowHeight:app.globalData.systemInfo.windowHeight,
-   ec: {
-      lazyLoad: true // 延迟加载
-    },
-  resultsList:[],
-  resultDetail:{}
+  	windowWidth:app.globalData.systemInfo.windowWidth,
+  	windowHeight:app.globalData.systemInfo.windowHeight,
+     ec: {
+        lazyLoad: true // 延迟加载
+      },
+    resultsList:[],
+    resultsTreeList:[],
+    resultDetail:{},
+    ShiTiArray:[],
+    ShiTiIndex: 0,
+    shiTiId:"",
+    resultsTreeDetailList:["a","b"]
 
   },
   onShareAppMessage() {
@@ -28,17 +33,33 @@ Page({
 
   onReady() {
     console.log('onReady')
-    this.index()
+    this.setData({
+      ShiTiArray:app.globalData.shiTiZiDianArray,
+      shiTiId:wx.getStorageSync("ShiTi").dictValue
+    })
+    if(this.data.shiTiId=="003"){
+      this.index()
+    }else{
+
+    }
   },
   onShow(){
     var that =this;
+    this.setData({
+      ShiTiIndex:app.globalData.shiTiIndex||0,
+      shiTiId:wx.getStorageSync("ShiTi").dictValue
+    })
     console.log('onShow')
-    if(app.globalData.reloadResults){
-      app.globalData.reloadResults=false
-      console.log('刷新答题记录列表')
-      that.index()
-
+    if(this.data.shiTiId=="003"){
+      if(app.globalData.reloadResults){
+        app.globalData.reloadResults=false
+        console.log('刷新答题记录列表')
+        that.index()
+      }
+    }else{
+        that.getResultTree()
     }
+    
   },
   index(){
     var that =this;
@@ -205,7 +226,7 @@ Page({
   },
 
   onPullDownRefresh() {
-    this.index()
+    // this.index()
     console.log('onPullDownRefresh', new Date())
   },
 
@@ -215,5 +236,58 @@ Page({
         console.log(res, new Date())
       }
     })
-  }
+  },
+  bindPickerChange(e){
+    this.saveShiti(e.detail.value);
+    this.setData({   //给变量赋值
+      ShiTiIndex: e.detail.value,  //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
+      shiTiId: wx.getStorageSync("ShiTi").dictValue
+    });
+    if(this.data.shiTiId=="003"){
+      this.index();
+    }else{
+      this.getResultTree();
+    }
+ },
+ saveShiti(index){
+  wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
+  app.globalData.shiTiIndex=index;
+ }, 
+  getResultTree(){
+    var that=this;
+      var params ={
+        testUser:{
+          userName:app.globalData.memberInfo.user.userName,
+          userCode:app.globalData.memberInfo.user.userCode
+        },
+        status:"0"
+      };
+
+
+      a.a_result_tree_list(params,
+        function success(data){
+          for(var i=0;i<data.list.length;i++){
+            if(data.list[i].analysis.replace(/'/g,"\"") =="") {
+              continue
+            }
+            var nengli =JSON.parse(data.list[i].analysis.replace(/'/g,"\""));
+            var nengliArr=[]
+              for(var key in nengli){  
+                nengliArr.push(
+                {key:key,
+                value:nengli[key]}
+
+                )
+            }  
+            data.list[i].resultsTreeDetailList=nengliArr
+          }
+          that.setData({
+            resultsTreeList:data.list
+          })
+
+      },function fail(data){
+          // console.log(data);
+      })
+  },
+
 });
