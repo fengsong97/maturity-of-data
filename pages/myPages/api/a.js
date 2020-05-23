@@ -134,6 +134,18 @@ var jsonToUrl = require("../api/jsonToUrl.js")
       doFail(data)
     })
 }
+//答题接口 新增 tree
+  function a_result_tree_add(data,doSuccess, doFail){
+    startRequest.postData("a/gen/aresultsTree/save?"+jsonToUrl.change(data),
+      {},
+      function success(data) {
+        // console.log(data)
+        doSuccess(data)
+    },function fail(data) {
+      // console.log(data)
+      doFail(data)
+    })
+}
 //答题接口 列表
   function a_result_list(params,doSuccess, doFail){
     startRequest.getData("a/gen/aresults/listData.json?"+jsonToUrl.change(params),
@@ -182,6 +194,7 @@ var jsonToUrl = require("../api/jsonToUrl.js")
  module.exports.a_questions = a_questions;
  module.exports.a_q_tree = a_q_tree;
  module.exports.a_result_add = a_result_add;
+ module.exports.a_result_tree_add = a_result_tree_add;
  module.exports.a_result_list = a_result_list;
  module.exports.a_result_detail = a_result_detail;
  module.exports.a_dicList = a_dicList;

@@ -240,6 +240,70 @@ onShow:function(){
   },
 
   result_add2(){
-
-  }
+    var obj ={id:"",
+          userCode:{
+            userCode: app.globalData.memberInfo.user.userCode,
+            userName: app.globalData.memberInfo.user.userName,
+          },
+          "title":wx.getStorageSync("ShiTi").dictValue,
+          "companyAvg":"",
+          "evaluate":"",
+          "analysis":"",
+          "achievement":"",
+          "shortage":"",
+          "suggest":"",
+          "summary":"",
+          "remarks":"",
+          aresultsTreeDetailsList:[]
+        };
+    var lists = this.data.lists;
+    var answers = this.data.answers;
+    // "0_1155000075046084608_数据战略规划_1155030816359333888_3"
+    var answersSum=0;
+    for (var i = 0; i < answers.length; i++) {
+      answersSum=answersSum+answers[i]*lists[i].weight;
+      var aresultDetails ={
+        id:"",
+        status:"0",
+        "treeNames":lists[i].treeNames,
+        "content":lists[i].content,
+        "fuhedu":"",
+        "fuheduScore":answers[i],
+        "weight":lists[i].weight,
+        "weightScore":answers[i]*lists[i].weight
+      }
+      obj.aresultsTreeDetailsList.push(aresultDetails)
+    }
+    //计算 有几个能力域 1
+    var nengLiArr=[];
+    for(var i=0;i<lists.length;i++){
+      nengLiArr.push(lists[1].treeNames.split("/")[0]);
+    }
+    //计算 有几个能力域 2
+    var nengliNum=this.uniq(nengLiArr).length;
+    //计算公式平均值
+    obj.companyAvg=answersSum/nengliNum/100;
+    obj;
+    a.a_result_tree_add(obj,
+      function success(data){
+          app.globalData.reloadResults=true;
+          wx.switchTab({
+            url: '/pages/myPages/result/result'
+          })
+    },function fail(data){
+        // console.log(data);
+    })
+    
+  },
+  uniq(array){
+    var temp = []; //一个新的临时数组
+    for(var i = 0; i < array.length; i++){
+        if(temp.indexOf(array[i]) == -1){
+            temp.push(array[i]);
+        }
+    }
+    return temp;
+}
 })
+
+
