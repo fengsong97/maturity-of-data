@@ -48,6 +48,7 @@ onShow:function(){
           });
           for(var i=0;i<lists.length;i++){
             lists[i].answersList=wx.getStorageSync("question2_answers");
+            lists[i].treeNamesWeizhi=lists[i].treeNames.replace(that.data.shitiTitle+'/','');
           }
           that.setData({
             lists:lists
