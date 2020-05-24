@@ -21,7 +21,8 @@ Page({
     ShiTiArray:[],
     ShiTiIndex: 0,
     shiTiId:"",
-    resultsTreeDetailList:[]
+    resultsTreeDetailList:[],
+    nengliArr:[]
 
   },
   onShareAppMessage() {
@@ -60,7 +61,10 @@ Page({
         that.index()
       }
     }else{
-        that.getResultTree()
+        that.getResultTree(function (){
+          that.setMyOption(that.getOption2());
+        },function(){})
+        
     }
     
   },
@@ -177,6 +181,51 @@ Page({
   };
   return option;
   },
+   getOption2: function (index) {
+    var nengliArr= this.data.resultsTreeList[index||0].resultsTreeDetailList;
+    var keys=[];var values=[];
+    for(var i=0;i<nengliArr.length;i++){
+        keys.push({name:nengliArr[i].key,max:5});
+        values.push(nengliArr[i].value);
+    }
+    // var option=this.getOption2(keys,values);
+
+  var option = {
+    backgroundColor: "#ffffff",
+    color: ["#37A2DA", "#FF9F7F"],
+    tooltip: {},
+    legend: {
+        data: ['销售']
+    },
+    xAxis: {
+      show: false
+    },
+    yAxis: {
+      show: false
+    },
+    legend: {
+        data: []
+    },
+    radar: {
+      shape: 'circle',
+      indicator: keys
+    },
+    series: [{
+      name: '数据成熟度',
+      type: 'radar',
+      // tooltip: {
+      //   trigger: 'item'
+      // },
+      itemStyle: {normal: {areaStyle: {type: 'default'}}},
+      data: [{
+        value: values,
+        name: '销售'
+      }
+      ]
+    }]
+  };
+  return option;
+  },
 
   getResultsList(doSuccess, doFail){
     var params ={
@@ -231,6 +280,7 @@ Page({
     })
   },
   bindPickerChange(e){
+    var that=this;
     this.saveShiti(e.detail.value);
     this.setData({   //给变量赋值
       ShiTiIndex: e.detail.value,  //每次选择了下拉列表的内容同时修改下标然后修改显示的内容，显示的内容和选择的内容一致
@@ -239,14 +289,16 @@ Page({
     if(this.data.shiTiId=="003"){
       this.index();
     }else{
-      this.getResultTree();
+      this.getResultTree(function(){
+        that.setMyOption(that.getOption2());
+      },function(){});
     }
  },
  saveShiti(index){
   wx.setStorageSync('ShiTi',this.data.ShiTiArray[index])
   app.globalData.shiTiIndex=index;
  }, 
-  getResultTree(){
+  getResultTree(doSuccess, doFail){
     var that=this;
       var params ={
         userCode:{
@@ -277,14 +329,17 @@ Page({
           that.setData({
             resultsTreeList:data.list
           })
-
+        doSuccess();
       },function fail(data){
+        doFail();
           // console.log(data);
       })
   },
   showDetail(e){
-    this.data.resultsTreeList[e.currentTarget.dataset.index].show=!this.data.resultsTreeList[e.currentTarget.dataset.index].show
+    var index=e.currentTarget.dataset.index;
+    this.data.resultsTreeList[index].show=!this.data.resultsTreeList[index].show
     this.setData({resultsTreeList:this.data.resultsTreeList});
+    this.setMyOption(this.getOption2(index));
   }
 
 });

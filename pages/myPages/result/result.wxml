@@ -29,7 +29,7 @@
 
 
         <view class="weui-panel" wx:if="{{shiTiId!='003'}}">
-          <block wx:for="{{resultsTreeList}}" wx:key="" wx:for-index="index" wx:for-item="result" wx:if="{{index <= 2}}">
+          <block wx:for="{{resultsTreeList}}"  wx:for-index="index" wx:for-item="result" wx:if="{{index <= 2}}">
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
@@ -54,7 +54,7 @@
 
 
     </view>
-    <view wx:if="{{shiTiId=='003'}}" style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
+    <view style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
       <ec-canvas id="mychartRadar" canvas-id="canvasMychartRadar" ec="{{ ec }}"></ec-canvas>
     </view>
 
