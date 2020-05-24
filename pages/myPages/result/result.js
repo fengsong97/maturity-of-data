@@ -37,6 +37,9 @@ Page({
       ShiTiArray:app.globalData.shiTiZiDianArray,
       shiTiId:wx.getStorageSync("ShiTi").dictValue
     })
+    //初始化雷达图 但不填充数据
+    this.init_echarts();
+
     if(this.data.shiTiId=="003"){
       this.index()
     }else{
@@ -85,40 +88,30 @@ Page({
         a.a_result_detail(params,
           function success(data){
             wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
-            that.begin()
+            that.setMyOption(that.getOption1())
         },function fail(data){
         })
     },function bbb(data) {
     });
   },
-  begin(){
-    var that =this;
-    that.echartsComponnet = that.selectComponent('#mychartRadar');
-    // if (!myChart){
-      that.init_echarts(); //初始化图表
-    // }else{
-      // that.setMyOption(); //更新数据
-    // }
-  },
   //初始化图表
   init_echarts: function () {
-    this.echartsComponnet.init((canvas, width, height) => {
+    this.selectComponent('#mychartRadar').init((canvas, width, height) => {
       // 初始化图表
       myChart = echarts.init(canvas, null, {
         width: width,
         height: height
       });
-      this.setMyOption();
       // 注意这里一定要返回 chart 实例，否则会影响事件处理等
       return myChart;
     });
   },
-  setMyOption: function () {
+  setMyOption: function (option) {
     // myChart.clear();  // 清除
-    myChart.setOption(this.getOption());  //获取新数据
+    myChart.setOption(option);  //填充数据
   },
 
-  getOption: function () {
+  getOption1: function () {
 
 
     var answers_title =  wx.getStorageSync('answers_title');
@@ -217,7 +210,7 @@ Page({
       function success(data){
         wx.setStorageSync('aresultDetailsList', data.aresults.aresultDetailsList);
         // console.log(data)
-        that.begin()
+        that.setMyOption(that.getOption1())
     },function fail(data){
         // console.log(data);
         // doFail(data)
