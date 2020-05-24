@@ -338,6 +338,10 @@ Page({
   showDetail(e){
     var index=e.currentTarget.dataset.index;
     this.data.resultsTreeList[index].show=!this.data.resultsTreeList[index].show
+    for(var i=0;i<this.data.resultsTreeList.length;i++){
+       if(i==index) continue;
+       this.data.resultsTreeList[i].show=false;
+    }
     this.setData({resultsTreeList:this.data.resultsTreeList});
     this.setMyOption(this.getOption2(index));
   }
