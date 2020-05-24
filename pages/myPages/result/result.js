@@ -21,7 +21,7 @@ Page({
     ShiTiArray:[],
     ShiTiIndex: 0,
     shiTiId:"",
-    resultsTreeDetailList:["a","b"]
+    resultsTreeDetailList:[]
 
   },
   onShareAppMessage() {
@@ -289,5 +289,11 @@ Page({
           // console.log(data);
       })
   },
+  showDetail(e){
+    console.log(e.target.dataset.index)
+    this.data.resultsTreeList[e.currentTarget.dataset.index].show=!this.data.resultsTreeList[e.currentTarget.dataset.index].show
+    this.setData({resultsTreeList:this.data.resultsTreeList});
+    e.target.dataset.hi.show=!e.target.dataset.hi.show;
+  }
 
 });

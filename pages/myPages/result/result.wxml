@@ -3,8 +3,8 @@
       <view class="section">
       <picker bindchange="bindPickerChange" value="{{ShiTiArray[ShiTiIndex].dictLabel}}" range="{{ShiTiArray}}"  range-key="{{'dictLabel'}}">
         <view class="picker">
-          <view>当前选择查看:  </view>
-          <view>{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
+          <view>点击切换试题:  </view>
+          <view style="text-align: center;">{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
         </view>
       </picker>
 </view>
@@ -29,16 +29,18 @@
 
 
         <view class="weui-panel" wx:if="{{shiTiId!='003'}}">
-          <block wx:for="{{resultsTreeList}}" wx:key="" wx:for-index="idx" wx:for-item="result" >
+          <block wx:for="{{resultsTreeList}}" wx:key="" wx:for-index="index" wx:for-item="result" >
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
                     <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">
                         当次得分:{{result.companyAvg}}
-                        <!-- <view style="float: right;">查看详情</view> -->
+                        <view style="float: right;" data-index="{{index}}" bindtap="showDetail">查看详情</view>
+                        <view wx:if="{{result.show}}">
                         <block wx:for="{{result.resultsTreeDetailList}}" wx:for-item="one">
                             <view style="text-align: center;color: #1aad19;">{{one.key}}: {{one.value}}</view>
                         </block>
+                        </view>
                     </view>
                     <view class="weui-media-box__desc">{{result.testSelectRemarks}}</view>
                     <view class="weui-media-box__info" style="margin-top: 0px" >
