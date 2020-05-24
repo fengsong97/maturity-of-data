@@ -256,7 +256,7 @@ Page({
   getResultTree(){
     var that=this;
       var params ={
-        testUser:{
+        userCode:{
           userName:app.globalData.memberInfo.user.userName,
           userCode:app.globalData.memberInfo.user.userCode
         },
