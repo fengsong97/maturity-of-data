@@ -136,8 +136,8 @@ var jsonToUrl = require("../api/jsonToUrl.js")
 }
 //答题接口 新增 tree
   function a_result_tree_add(data,doSuccess, doFail){
-    startRequest.postData("a/gen/aresultsTree/save?"+jsonToUrl.change(data),
-      {},
+    startRequest.postData("a/gen/aresultsTree/save2?",
+      data,
       function success(data) {
         // console.log(data)
         doSuccess(data)
