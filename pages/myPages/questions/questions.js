@@ -150,7 +150,7 @@ onShow:function(){
 
     that.setData({
       currentIndex: n,
-      currentName: that.data.lists[n].title|that.data.lists[n].name
+      currentName: that.data.lists[n].title||that.data.lists[n].name
     })
 
     console.log(this.data.currentIndex)
