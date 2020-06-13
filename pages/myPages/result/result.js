@@ -237,8 +237,8 @@ Page({
             createDate_gte:"",
             createDate_lte:"",
             status:"0",
-            pageNo:"",
-            pageSize:"",
+            pageNo:1,
+            pageSize:3,
             orderBy:""
     };
 
@@ -306,7 +306,9 @@ Page({
           userCode:app.globalData.memberInfo.user.userCode
         },
         status:"0",
-        title:this.data.shiTiId
+        title:this.data.shiTiId,
+        pageNo:1,
+        pageSize:3
       };
 
 
