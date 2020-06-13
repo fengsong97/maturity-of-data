@@ -3,8 +3,8 @@
       <view class="section">
       <picker bindchange="bindPickerChange" value="{{ShiTiArray[ShiTiIndex].dictLabel}}" range="{{ShiTiArray}}"  range-key="{{'dictLabel'}}">
         <view class="picker">
-          <view>点击切换试题:  </view>
-          <view style="text-align: center;">{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
+          <view style="display: inline;float: left">点击切换试题:  </view>
+          <view style="text-align: center;display: inline;">{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
         </view>
       </picker>
 </view>
@@ -13,50 +13,76 @@
 
         <view class="weui-panel" wx:if="{{shiTiId=='003'}}">
           <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx == 0}}">
-            <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
-            <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" bindtap="getResultDetail" data-result="{{result}}">
-                <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
-                    <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">评估时间: {{result.createDate}}</view>
-                    <view class="weui-media-box__desc">{{result.testSelectRemarks}}</view>
-                    <view class="weui-media-box__info" style="margin-top: 0px" >
-                        <!-- <view class="weui-media-box__info__meta"  >提交时间: {{result.createDate}}</view> -->
+
+            <view class="weui-form-preview">
+               <!--  <view class="weui-form-preview__hd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估得分</view>
+                        <view class="weui-form-preview__value_in-hd">{{result.companyAvg}}</view>
+                    </view>
+                </view> -->
+                <view class="weui-form-preview__bd" style="padding: 0 16px;">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估人</view>
+                        <view class="weui-form-preview__value">{{userInfo.nickName}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估试题</view>
+                        <view class="weui-form-preview__value">{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估时间</view>
+                        <view class="weui-form-preview__value">{{result.createDate}}</view>
                     </view>
                 </view>
+
             </view>
+
             </block>
         </view>
 
 
 
-        <view class="weui-panel" wx:if="{{shiTiId!='003'}}">
-          <block wx:for="{{resultsTreeList}}"  wx:for-index="index" wx:for-item="result" wx:if="{{index ==0}}">
-            <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
-            <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" data-result="{{result}}">
-                <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
-                    <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">
-                        得分:{{result.companyAvg}}
-                        <view style="float: right;" data-index="{{index}}" bindtap="showDetail">查看详情</view>
-                        <view wx:if="{{result.show}}">
-                        <block wx:for="{{result.resultsTreeDetailList}}" wx:for-item="one">
-                            <view style="text-align: center;color: #1aad19;">{{one.key}}: {{one.value}}</view>
-                        </block>
-                        </view>
-                    </view>
-                    <view class="weui-media-box__desc">{{result.testSelectRemarks}}</view>
-                    <view class="weui-media-box__info" style="margin-top: 0px" >
-                        <view class="weui-media-box__info__meta"  >评估时间: {{result.createDate}}</view>
+    <view class="weui-panel" wx:if="{{shiTiId!='003'}}">
+      <block wx:for="{{resultsTreeList}}"  wx:for-index="index" wx:for-item="result" wx:if="{{index ==0}}">
+            <view class="weui-form-preview">
+                <view class="weui-form-preview__hd">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估得分</view>
+                        <view class="weui-form-preview__value_in-hd">{{result.companyAvg}}</view>
                     </view>
                 </view>
-            </view>
-            </block>
+                <view class="weui-form-preview__bd" style="padding: 0 16px;">
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估人</view>
+                        <view class="weui-form-preview__value">{{userInfo.nickName}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估试题</view>
+                        <view class="weui-form-preview__value">{{ShiTiArray[ShiTiIndex].dictLabel}}</view>
+                    </view>
+                    <view class="weui-form-preview__item">
+                        <view class="weui-form-preview__label">评估时间</view>
+                        <view class="weui-form-preview__value">{{result.createDate}}</view>
+                    </view>
+                </view>
 
-        </view>
+            </view>
+
+        </block>
+
+    </view>
 
 
     </view>
     <view style="height: {{windowHeight/2}}px;width: {{windowWidth}}px">
       <ec-canvas id="mychartRadar" canvas-id="canvasMychartRadar" ec="{{ ec }}"></ec-canvas>
     </view>
+    <view wx:if="{{shiTiId!='003'}}" bindtap="showDetail">查看详情</view>
+    <block wx:if="{{shiTiId!='003' && showDetailBoolean}}" wx:for="{{resultsTreeList[0].resultsTreeDetailList}}" wx:for-item="one">
+        <view style="text-align: center;color: #1aad19; border: 0.5px solid rgba(0,0,0,.1);">
+        {{one.key}}: {{one.value}}</view>
+    </block>
 
 
 
