@@ -22,7 +22,9 @@ Page({
     ShiTiIndex: 0,
     shiTiId:"",
     resultsTreeDetailList:[],
-    nengliArr:[]
+    nengliArr:[],
+    userInfo:{},
+    showDetailBoolean:false
 
   },
   onShareAppMessage() {
@@ -46,6 +48,24 @@ Page({
     }else{
 
     }
+
+
+    var that = this;
+    // 查看是否授权
+    wx.getSetting({
+      success (res){
+        if (res.authSetting['scope.userInfo']) {
+          // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+          wx.getUserInfo({
+            success: function(res) {
+            that.setData({
+              userInfo:res.userInfo
+            })
+            }
+          })
+        }
+      }
+    })
   },
   onShow(){
     var that =this;
@@ -112,7 +132,13 @@ Page({
   },
   setMyOption: function (option) {
     // myChart.clear();  // 清除
+    if(myChart==null){
+      setTimeout(function(){
+        myChart.setOption(option);  //填充数据
+      },1000)
+    }else{
     myChart.setOption(option);  //填充数据
+    }
   },
 
   getOption1: function () {
@@ -338,15 +364,8 @@ Page({
           // console.log(data);
       })
   },
-  showDetail(e){
-    var index=e.currentTarget.dataset.index;
-    this.data.resultsTreeList[index].show=!this.data.resultsTreeList[index].show
-    for(var i=0;i<this.data.resultsTreeList.length;i++){
-       if(i==index) continue;
-       this.data.resultsTreeList[i].show=false;
-    }
-    this.setData({resultsTreeList:this.data.resultsTreeList});
-    this.setMyOption(this.getOption2(index));
+  showDetail(){
+    this.setData({showDetailBoolean:!this.data.showDetailBoolean});
   }
 
 });
