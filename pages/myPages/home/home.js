@@ -5,13 +5,9 @@ const pageObject = {
   },
     onLoad(opts) {
      wx.getSetting({
-            success: res => {
-              if (res.authSetting['scope.userInfo']) {
-                 this.setData({
-                  loading: true,
-                  disabled: true
-
-                  }) 
+        success: res => {
+          if (res.authSetting['scope.userInfo']) {
+            console.log("已授权")
 
     }}})
 
