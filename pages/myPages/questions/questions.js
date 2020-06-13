@@ -51,7 +51,7 @@ onShow:function(){
             return item.treeLevel===3 && item.pIds.split(",")[1]===that.data.shiTiId;
           });
           console.log("111"+new Date())
-          var tempList=[];tempList.length = 2;
+          var tempList=[];tempList.length = lists.length;
           that.setData({
             'lists':tempList
           }) 
@@ -141,11 +141,11 @@ onShow:function(){
         this.setData({
           ['lists[' + n + ']']:this.data.treeQuestionLists[n]
         })
-        if(n<this.data.treeQuestionLists.length-1){
-          this.setData({
-          ['lists[' + n_1 + ']']:this.data.treeQuestionLists[n_1]
-        })
-        }
+        // if(n<this.data.treeQuestionLists.length-1){
+        //   this.setData({
+        //   ['lists[' + n_1 + ']']:undefined
+        // })
+        // }
     }
 
     that.setData({
@@ -164,13 +164,18 @@ onShow:function(){
     console.log(this.data);
   },
   radioChange2:function(e) {
-    console.log(e);
+    var that=this;
+    // console.log(e);
     this.data.answers[e.currentTarget.id]=e.detail.value
     this.data.lists[this.data.currentIndex].result_=e.detail.value
-    // this.setData({
-    //   answers["2"]:'2'
-    // })
-    console.log(this.data);
+
+    for (var i = 0; i < that.data.lists.length; i++) {
+      if(that.data.answers[i]==undefined){
+         that.toslider(i)
+      return;
+     }
+   }
+
   },
   toslider(index){
     this.setData({

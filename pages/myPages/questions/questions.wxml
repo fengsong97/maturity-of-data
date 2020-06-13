@@ -60,10 +60,10 @@
                   duration="{{duration}}" 
                   current="{{toIndex}}" 
                   bindchange="swiperChange">
-            <block wx:for="{{lists}}" wx:key="*this" wx:for-item="list">
+            <block wx:for="{{lists}}" wx:key="*this" wx:for-index="idx" wx:for-item="list">
               
-               <swiper-item >
-                <scroll-view scroll-y="true" style="height: 100%">
+               <swiper-item  hidden="{{idx<currentIndex-1 || currentIndex+1<idx}}" >
+                <!-- <scroll-view scroll-y="true" style="height: 100%"> -->
                  
                           <view class="swiper-item "> 
                            <view > 
@@ -95,7 +95,7 @@
                             </view>
                         </view>
                 
-                  </scroll-view>
+                  <!-- </scroll-view> -->
                </swiper-item>
 
             </block>
