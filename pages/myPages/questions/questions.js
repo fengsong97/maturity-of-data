@@ -28,6 +28,7 @@ onShow:function(){
     shitiTitle:'',
     question2_answers:'',
     lists: [],
+    treeQuestionLists: [],
     answers:[],
     indicatorDots: false,
     vertical: false,
@@ -46,12 +47,25 @@ onShow:function(){
           var lists=data.filter(function (item) {
             return item.treeLevel===3 && item.pIds.split(",")[1]===that.data.shiTiId;
           });
+
+          var tempList=[];tempList.length = lists.length;
+          that.setData({
+            'lists':tempList
+          }) 
+
           for(var i=0;i<lists.length;i++){
             lists[i].answersList=wx.getStorageSync("question2_answers");
             lists[i].treeNamesWeizhi=lists[i].treeNames.replace(that.data.shitiTitle+'/','');
+            if(i==0){
+              that.setData({
+                'lists[0]':lists[0]
+              })
+            }
           }
+          
+          
           that.setData({
-            lists:lists
+            treeQuestionLists: lists
           })
       },function fail(data){
           // console.log(data);
@@ -116,9 +130,15 @@ onShow:function(){
   },
   //轮播图的切换事件
   swiperChange(e) {
+    var n = e.detail.current;
+    if(this.data.lists[n]==undefined){
+        this.setData({
+          ['lists[' + n + ']']:this.data.treeQuestionLists[n]
+        })
+    }
     this.setData({
-      currentIndex: e.detail.current,
-      currentName: this.data.lists[e.detail.current].title
+      currentIndex: n,
+      currentName: this.data.lists[n].title|this.data.lists[n].name
     })
     console.log(this.data.currentIndex)
   },
@@ -142,7 +162,7 @@ onShow:function(){
   toslider(index){
     this.setData({
       currentIndex: index,
-      currentName: this.data.lists[index].title
+      // currentName: this.data.lists[index].title|this.data.lists[index].name
     })
   },
   submit(e) {

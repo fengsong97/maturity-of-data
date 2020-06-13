@@ -305,7 +305,8 @@ Page({
           userName:app.globalData.memberInfo.user.userName,
           userCode:app.globalData.memberInfo.user.userCode
         },
-        status:"0"
+        status:"0",
+        title:this.data.shiTiId
       };
 
 
