@@ -34,7 +34,7 @@
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
                     <view class="weui-media-box__title weui-media-box__title_in-text" style="margin-bottom: 0px">
-                        当次得分:{{result.companyAvg}}
+                        得分:{{result.companyAvg}}
                         <view style="float: right;" data-index="{{index}}" bindtap="showDetail">查看详情</view>
                         <view wx:if="{{result.show}}">
                         <block wx:for="{{result.resultsTreeDetailList}}" wx:for-item="one">
