@@ -35,7 +35,7 @@ onShow:function(){
     vertical: false,
     autoplay: false,
     interval: 2000,
-    duration: 500,
+    duration: 0,
     currentIndex: 0,
     toIndex: 0,
     currentName: '',
@@ -136,13 +136,14 @@ onShow:function(){
     console.log("111"+new Date())
     var that=this;
     var n = e.detail.current;
+    var n_1=n+1;
     if(this.data.lists[n]==undefined){
         this.setData({
           ['lists[' + n + ']']:this.data.treeQuestionLists[n]
         })
         if(n<this.data.treeQuestionLists.length-1){
           this.setData({
-          ['lists[' + n+1 + ']']:this.data.treeQuestionLists[n+1]
+          ['lists[' + n_1 + ']']:this.data.treeQuestionLists[n_1]
         })
         }
     }
