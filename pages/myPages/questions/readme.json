@@ -1,0 +1,71 @@
+{
+	"id":"1264109813973114880",
+	"userCode":{
+		"userName": "wx@冯松",
+		"userCode": "wx_wFNO5fBQhn_oau1"
+	},
+	"title":"001",
+	"companyAvg":"1.561",
+	"evaluate":"",
+	"analysis":"",
+	"achievement":"",
+	"shortage":"",
+	"suggest":"",
+	"summary":"",
+	"remarks":"",
+	"aresultsTreeDetailsList":[{
+		"status":"0",
+		"id":"1264109814048612352",
+		"treeNames":"评估试题001/数据战略规划/等级01/题目01",
+		"content":"在项目建设的过程中反应了数据管理的目标和范围。",
+		"fuhedu":"11",
+		"fuheduScore":"100",
+		"weight":"1",
+		"weightScore":"100"
+	},{
+		"status":"0",
+		"id":"1264109814140887040",
+		"treeNames":"评估试题001/数据战略规划/等级02/题目01",
+		"content":"识别与数据战略相关的利益相关者；",
+		"fuhedu":"",
+		"fuheduScore":"70",
+		"weight":"0.33",
+		"weightScore":"23.1"
+	}{
+		"status":"0",
+		"id":"1264109814241550336",
+		"treeNames":"评估试题001/数据战略规划/等级02/题目02",
+		"content":"数据战略的制定能够遵循相关的管理流程；",
+		"fuhedu":"",
+		"fuheduScore":"100",
+		"weight":"0.33",
+		"weightScore":"33"
+	}{
+		"status":"0",
+		"id":"1264109814312853504",
+		"treeNames":"评估试题001/数据战略规划/等级02/题目03",
+		"content":"维护了数据战略和业务战略之间的关联关系。",
+		"fuhedu":"",
+		"fuheduScore":"0",
+		"weight":"0.33",
+		"weightScore":"0"
+	}]
+
+}
+
+aresultsTreeDetailsList[1].status: 0
+aresultsTreeDetailsList[1].id: 1264109814140887040
+aresultsTreeDetailsList[1].treeNames: 评估试题001/数据战略规划/等级02/题目01
+aresultsTreeDetailsList[1].content: 识别与数据战略相关的利益相关者；
+aresultsTreeDetailsList[1].fuhedu:  
+aresultsTreeDetailsList[1].fuheduScore: 70
+aresultsTreeDetailsList[1].weight: 0.33
+aresultsTreeDetailsList[1].weightScore: 23.1
+aresultsTreeDetailsList[2].status: 0
+aresultsTreeDetailsList[2].id: 1264109814241550336
+aresultsTreeDetailsList[2].treeNames: 评估试题001/数据战略规划/等级02/题目02
+aresultsTreeDetailsList[2].content: 数据战略的制定能够遵循相关的管理流程；
+aresultsTreeDetailsList[2].fuhedu:  
+aresultsTreeDetailsList[2].fuheduScore: 100
+aresultsTreeDetailsList[2].weight: 0.33
+aresultsTreeDetailsList[2].weightScore: 33
