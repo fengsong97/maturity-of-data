@@ -10,7 +10,7 @@
                   autoplay="{{autoplay}}" 
                   interval="{{interval}}" 
                   duration="{{duration}}" 
-                  current="{{currentIndex}}" 
+                  current="{{toIndex}}" 
                   bindchange="swiperChange">
             <block wx:for="{{lists}}" wx:key="*this" wx:for-item="list">
               
