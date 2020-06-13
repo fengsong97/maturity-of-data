@@ -29,6 +29,7 @@ onShow:function(){
     question2_answers:'',
     lists: [],
     treeQuestionLists: [],
+    treeQuestionListsLength: 0,
     answers:[],
     indicatorDots: false,
     vertical: false,
@@ -36,6 +37,7 @@ onShow:function(){
     interval: 2000,
     duration: 500,
     currentIndex: 0,
+    toIndex: 0,
     currentName: '',
     disable: false
   },
@@ -44,29 +46,30 @@ onShow:function(){
     if(wx.getStorageSync("ShiTi").dictValue!="003"){
       a.a_q_tree({},
         function success(data){
+          console.log("000"+new Date())
           var lists=data.filter(function (item) {
             return item.treeLevel===3 && item.pIds.split(",")[1]===that.data.shiTiId;
           });
-
-          var tempList=[];tempList.length = lists.length;
+          console.log("111"+new Date())
+          var tempList=[];tempList.length = 2;
           that.setData({
             'lists':tempList
           }) 
-
+          console.log("222"+new Date())
+          var some=wx.getStorageSync("question2_answers");
           for(var i=0;i<lists.length;i++){
-            lists[i].answersList=wx.getStorageSync("question2_answers");
+            lists[i].answersList=some;
             lists[i].treeNamesWeizhi=lists[i].treeNames.replace(that.data.shitiTitle+'/','');
-            if(i==0){
-              that.setData({
-                'lists[0]':lists[0]
-              })
-            }
           }
-          
+          console.log("333"+new Date())
           
           that.setData({
-            treeQuestionLists: lists
+            'lists[0]':lists[0],
+            // 'lists[1]':lists[1],
+            treeQuestionLists: lists,
+            treeQuestionListsLength: lists.length
           })
+          console.log("444"+new Date())
       },function fail(data){
           // console.log(data);
       })
@@ -130,16 +133,25 @@ onShow:function(){
   },
   //轮播图的切换事件
   swiperChange(e) {
+    console.log("111"+new Date())
+    var that=this;
     var n = e.detail.current;
     if(this.data.lists[n]==undefined){
         this.setData({
           ['lists[' + n + ']']:this.data.treeQuestionLists[n]
         })
+        if(n<this.data.treeQuestionLists.length-1){
+          this.setData({
+          ['lists[' + n+1 + ']']:this.data.treeQuestionLists[n+1]
+        })
+        }
     }
-    this.setData({
+
+    that.setData({
       currentIndex: n,
-      currentName: this.data.lists[n].title|this.data.lists[n].name
+      currentName: that.data.lists[n].title|that.data.lists[n].name
     })
+
     console.log(this.data.currentIndex)
   },
   radioChange:function(e) {
@@ -161,7 +173,7 @@ onShow:function(){
   },
   toslider(index){
     this.setData({
-      currentIndex: index,
+      toIndex: index,
       // currentName: this.data.lists[index].title|this.data.lists[index].name
     })
   },

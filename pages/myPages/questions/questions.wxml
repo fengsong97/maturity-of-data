@@ -50,7 +50,7 @@
 <!-- -->
            <view wx:if="{{shiTiId!='003'}}" style="height: 9%;font-weight: 600;text-align:center;border-bottom: 1px dashed #aaa;" >
   <view>{{shitiTitle}}</view>
-  <view>第{{currentIndex+1}}/{{lists.length}}题</view>
+  <view>第{{currentIndex+1}}/{{treeQuestionListsLength}}题</view>
 </view>
           <swiper wx:if="{{shiTiId!='003'}}"
                   style="height: 80%;" 
@@ -58,7 +58,7 @@
                   autoplay="{{autoplay}}" 
                   interval="{{interval}}" 
                   duration="{{duration}}" 
-                  current="{{currentIndex}}" 
+                  current="{{toIndex}}" 
                   bindchange="swiperChange">
             <block wx:for="{{lists}}" wx:key="*this" wx:for-item="list">
               
