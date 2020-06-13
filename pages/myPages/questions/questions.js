@@ -310,7 +310,7 @@ onShow:function(){
         "fuhedu":"",
         "fuheduScore":answers[i],
         "weight":lists[i].weight,
-        "weightScore":answers[i]*lists[i].weight
+        "weightScore":(answers[i]*lists[i].weight).toFixed(2)
       }
       obj.aresultsTreeDetailsList.push(aresultDetails)
     }
@@ -327,7 +327,7 @@ onShow:function(){
         var nengliScrOne=0;
         for (var j = 0; j < obj.aresultsTreeDetailsList.length; j++) {
           if(obj.aresultsTreeDetailsList[j].treeNames.indexOf(nengLiArr[i])>=0){
-              nengliScrOne=nengliScrOne+obj.aresultsTreeDetailsList[j].weightScore
+              nengliScrOne=nengliScrOne + parseFloat(obj.aresultsTreeDetailsList[j].weightScore)
           }
         }
         nengliObj[nengLiArr[i]]=(nengliScrOne/100).toFixed(2);
