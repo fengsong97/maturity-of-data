@@ -2,11 +2,7 @@
 <view class="container">
 
 
-<view class="box {{extraClasses}}"
-  bindtransitionend="transitionEnd"
-  bindanimationstart="animationStart"
-  bindanimationiteration="animationIteration"
-> <image style="width:50px; height:50px" src="/image/WechatIMG6.png"></image>
+<view style="width:50px; height:50px">
 </view>
 <view style="text-align: center;">
   <view>数据能力成熟度小程序</view>
