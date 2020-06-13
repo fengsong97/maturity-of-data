@@ -12,7 +12,7 @@
         <view style="text-align: center;"wx:if="{{resultsList.length == 0&&resultsTreeList.length==0}}">无评估记录</view>
 
         <view class="weui-panel" wx:if="{{shiTiId=='003'}}">
-          <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx <= 2}}">
+          <block wx:for="{{resultsList}}" wx:key="" wx:for-index="idx" wx:for-item="result" wx:if="{{idx == 0}}">
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" bindtap="getResultDetail" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >
@@ -29,7 +29,7 @@
 
 
         <view class="weui-panel" wx:if="{{shiTiId!='003'}}">
-          <block wx:for="{{resultsTreeList}}"  wx:for-index="index" wx:for-item="result" wx:if="{{index <= 2}}">
+          <block wx:for="{{resultsTreeList}}"  wx:for-index="index" wx:for-item="result" wx:if="{{index ==0}}">
             <!-- <view class="weui-panel__hd">只显示最近三次答题</view> -->
             <view class="weui-panel__bd"  style="border-top: 1px dashed #aaa;" data-result="{{result}}">
                 <view class="weui-media-box weui-media-box_text" style="padding-bottom: 0px" >

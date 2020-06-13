@@ -1,5 +1,5 @@
 {
-    "navigationBarTitleText": "最近评估结果",
+    "navigationBarTitleText": "最近一次评估结果",
 	"usingComponents": {
     	"ec-canvas": "../ec-canvas/ec-canvas"
   	},
