@@ -156,12 +156,16 @@ onShow:function(){
     console.log(this.data.currentIndex)
   },
   radioChange:function(e) {
+    var that=this;
     console.log(e);
     this.data.answers[e.currentTarget.id]=e.detail.value
-    // this.setData({
-    //   answers["2"]:'2'
-    // })
-    console.log(this.data);
+
+    for (var i = 0; i < that.data.lists.length; i++) {
+      if(that.data.answers[i]==undefined){
+         that.toslider(i)
+      return;
+     }
+   }
   },
   radioChange2:function(e) {
     var that=this;
